@@ -1,0 +1,57 @@
+<!-- Scan-code.nvue   扫码 -->
+<template>
+	<div>
+		<view class="Detailss_1">
+			<view class="diandi60"></view>
+			<view class="" @tap="ScanCodeClick()">
+				<view class="Detailss_1_1 displayFlex_center"><image style="width: 88upx;height: 88upx;" src="../static/saoma.png" mode=""></image></view>
+				<view class="Detailss_1_2 Size26 displayFlex_center">扫码领纸</view>
+			</view>
+		</view>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		onLoad() {
+	
+		},
+		methods: {
+			
+			ScanCodeClick(){
+				this.$emit('ScanCodeClick');
+			},
+			
+		}
+	}
+</script>
+
+<style>
+.Detailss_1{
+	width: 100%;
+	height: 275upx;
+	background: #f7dd4c;
+	border-radius: 20upx 20upx 0 0;
+	position: fixed;
+	bottom:98upx;
+	z-index:999;
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Detailss_1_2{
+	line-height: 80upx;
+	height: 80upx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* background-color: #007AFF; */
+}
+</style>

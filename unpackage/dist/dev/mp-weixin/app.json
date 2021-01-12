@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/hs-scancode/hs-scancode",
+    "pages/scan-results/scan-results",
+    "pages/index/Successful",
+    "pages/mine/newsDetails",
+    "pages/mine/news",
+    "pages/mine/follow",
+    "pages/mine/modifyPhone",
+    "pages/mine/PersonalSettings",
+    "pages/Logon/Logon",
+    "pages/Logon/lang",
+    "pages/Logon/phoneNumber",
+    "pages/Discount/Discount",
+    "pages/Discount/DiscountDetails",
+    "pages/Discount/search"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#9A9A9A",
+    "selectedColor": "#F7DD4C",
+    "borderStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/zhijin.png",
+        "selectedIconPath": "static/zhijin_1.png",
+        "text": "领纸巾"
+      },
+      {
+        "pagePath": "pages/Discount/Discount",
+        "iconPath": "static/tuiguang.png",
+        "selectedIconPath": "static/tuiguang_1.png",
+        "text": "优惠推广"
+      }
+    ]
+  },
+  "usingComponents": {
+    "wh-captcha": "/common/wh-captcha/wh-captcha",
+    "no-list": "/common/No-List",
+    "heads": "/components/heads",
+    "scan-code": "/components/Scan-code",
+    "detailss": "/components/Detailss",
+    "mine": "/components/mine",
+    "uni-section": "/components/uni-transition/uni-section",
+    "uni-transition": "/components/uni-transition/uni-transition"
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,60 @@
+<!-- 从上页面反面回来时候怎么携带参数    传递参数-->
+		
+		1.在main.js文件中加入
+		
+		Vue.prototype.$eventHub = new Vue();
+		
+		2.在监听页面加入
+		
+		this.$eventHub.$on('fire', function (data) {
+			console.log('fire - '+data);
+		});
+		
+		3.在发送页面加入
+		
+		this.$eventHub.$emit('fire','data');
+		
+		4.记得取消监听，会消耗性能
+		
+		this.$eventHub.$off('fire');
+		
+		
+		
+	
+	组件类  点击事件 传值用法
+		
+		
+		<posilCom  @closeChange="closeCom($event)" :list="list"></posilCom>
+		
+		list:[{name:'1'},{name:'1'},{name:'1'}],
+		
+		
+		closeCom(e){
+			console.log(e)
+		}
+		
+
+		子组件：
+		
+		<view class="diandi10" @tap="dianji(value)" v-for(value,index) in list :key="index"></view>
+		
+		props:["list"],
+		
+		dianji(){
+			this.$emit('closeChange',value.id);
+		}
+		
+		
+		
+		========================================================================
+		
+		单页面取消状态烂
+		
+		
+		onShow() {  
+			plus.navigator.setFullscreen(true);  //取消状态烂
+		},
+		onUnload() {  
+		    console.log('监听页面卸载')  
+			plus.navigator.setFullscreen(false);   //开启状态烂
+		},  

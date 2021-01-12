@@ -1,0 +1,151 @@
+<!-- Detailss.nvue  扫码 商家详情 -->
+<template>
+	<div>
+		
+		<view class="Detailss_2">
+			<view class="Detailss_2_1 displayFlex_right"><view class="displayFlex_center" @tap="closeClick()"><image style="width: 32upx;height:32upx;" src="../static/xx.png" mode=""></image></view></view>
+			<view class="diandi30"></view>
+			<view class="Detailss_2_2">
+				<view class="Margin030">
+					<view class="Detailss_2_2_1 displayFlex_fen">
+						<view class="Detailss_2_2_1_2 Size32 fontWeight600">机器名称</view>
+						<view class="Detailss_2_2_1_1 displayFlex_center Size24" @tap="NavigationClick()">导航</view>
+					</view>
+					<view class="diandi20"></view>
+					<view class="Detailss_2_2_2 Size24">
+						<view class="Detailss_2_2_2_1"><image style="width: 32upx;height: 32upx;margin-top: 10upx;" src="../static/wzs.png" mode=""></image></view>
+						<view class="Detailss_2_2_2_2">
+							地点名称:距离你773米,洛阳市王城大道王城公园15号
+						</view>
+					</view>
+					
+				</view>
+			</view>
+		</view>
+		
+	<!-- 	<view class="Detailss_3 displayFlex_right">
+			<view class="displayFlex_right" @tap="HomingClick()"><image style="width: 92upx;height: 92upx;" src="../static/dingwei.png" mode=""></image></view>
+		</view> -->
+		
+		
+		
+	</div>
+</template>
+
+<script>
+	export default {
+		props:["judgeipt"],
+		data() {
+			return {
+				
+			}
+		},
+		onLoad() {
+	
+		},
+		methods: {
+			
+			closeClick(){
+				this.$emit('closeClick');
+			},
+			NavigationClick(){
+				this.$emit('NavigationClick');
+			},
+			HomingClick(){
+				this.$emit('HomingClick');
+			}
+		}
+	}
+</script>
+
+<style>
+
+
+
+.Detailss_2{
+	width:100%;
+	height: 296upx;
+	background: #f7dd4c;
+	border-radius: 20upx 20upx 0 0;
+	position: fixed;
+	bottom:98upx;
+	/* z-index:9999999;
+	flex-direction: column; */
+}
+
+.Detailss_2_1{
+	width: 100%;
+	height: 78upx;
+	/* background-color: #007AFF; */
+	flex-direction: row;
+	justify-content:flex-end;
+}
+.Detailss_2_1 view{
+	width: 78upx;
+	height: 78upx;
+	/* background-color: #40C255; */
+}
+
+.Detailss_2_2{
+	width: 100%;
+	/* height: 60upx; */
+	/* background-color: #40C255; */
+}
+.Detailss_2_2_1{
+	width: 100%;
+	height: 60upx;
+	/* background-color: #F0AD4E; */
+	flex-direction: row;
+	justify-content:space-between;
+}
+.Detailss_2_2_1_2{
+	line-height: 60upx;
+	font-size: 32upx;
+	font-weight: 600;
+}
+.Detailss_2_2_1_1{
+	width: 145upx;
+	height: 50upx;
+	border-radius: 25upx;
+	background-color: #18415d;
+	color: #FFFFFF;
+	line-height: 50upx;
+	text-align: center;
+	
+}
+.Detailss_2_2_2{
+	width: 100%;
+	min-height:50upx;
+	line-height: 50upx;
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+}
+.Detailss_2_2_2_1{
+	width: 5%;
+	min-height:50upx;
+	/* background-color: #007AFF; */
+	display: flex;
+}
+.Detailss_2_2_2_2{
+	width: 95%;
+	min-height:50upx;
+	/* background-color: #DD524D; */
+}
+
+.Detailss_3{
+	width: 100%;
+	height: 92upx;
+	/* background-color: #007AFF; */
+	position: fixed;
+	bottom: 400upx;
+}
+.Detailss_3 view{
+	width: 92upx;
+	height: 92upx;
+	/* background-color: #FFFFFF; */
+	border-radius: 15upx;
+	margin-right: 32upx;
+}
+
+</style>

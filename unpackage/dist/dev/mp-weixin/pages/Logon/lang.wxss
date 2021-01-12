@@ -1,0 +1,60 @@
+
+.content {
+    padding: 40rpx 30rpx;
+}
+.lang {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+            flex-direction: column;
+	/* background: #007AFF; */
+	margin-top: 10rpx;
+}
+.lang .lang-list {
+	margin-bottom: 30rpx;
+    padding: 10rpx 30rpx;
+	width: 100%;
+	height:75rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+	border: 2rpx solid #007AFF;
+	border-radius: 16rpx;
+	/* background: #E03997; */
+}
+.lang .lang-list:last-child {
+    margin-bottom: 0;
+}
+.lang .lang-list .option {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+}
+.lang .lang-list .option .img {
+    margin-right: 30rpx;
+    width: 40rpx;
+	line-height: 1;
+}
+.lang .lang-list .option .img image {
+    width: 100%;
+}
+.lang .lang-list .option .txt {
+    font-size: 28rpx;
+}
+.lang .lang-list radio {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+}
+

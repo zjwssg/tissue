@@ -1,0 +1,1 @@
+<view class="_div"><view class="Detailss_1"><view class="diandi60"></view><view data-event-opts="{{[['tap',[['ScanCodeClick']]]]}}" bindtap="__e"><view class="Detailss_1_1 displayFlex_center"><image style="width:88rpx;height:88rpx;" src="../static/saoma.png" mode></image></view><view class="Detailss_1_2 Size26 displayFlex_center">扫码领纸</view></view></view></view>

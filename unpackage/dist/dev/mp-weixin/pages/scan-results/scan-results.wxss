@@ -1,0 +1,24 @@
+
+page {
+	width: 750rpx;
+	height: 100vh;
+	background-color: #FFFFFF;
+}
+.bg-custom {
+	background-color: #F0F0F0;
+}
+.text-msg {
+	-webkit-user-select: auto;
+	        user-select: auto;
+}
+.cu-custom .action.back {
+	padding-left: 15px;
+	margin-left: 0;
+	width: 44px;
+}
+.cu-custom .action.back .cuIcon-close {
+	font-size: 1.5em;
+	color: #000000;
+	text-align: center;
+}
+

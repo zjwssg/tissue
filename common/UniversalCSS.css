@@ -1,0 +1,306 @@
+	
+	
+	/* 
+	 
+	 常用CSS样式  注：必须是 scss
+	APP.vue 中引入
+	
+	
+	@import url("./common/UniversalCSS.css");
+	 
+	 
+	 */
+	
+	
+	
+	
+	
+	
+	/* 页面背景色 */
+
+	.page{
+		width: 100% !important;
+		min-height:100vh !important;
+		background: #f5f6fa !important;
+		/* overflow: hidden; */
+	}
+	
+	/* 内阴影 */
+	.boxShadow{
+		box-shadow: inset 0upx 0upx 80upx #473876 !important;
+	}
+	
+
+
+	.background_fafafa{
+		width: 100% !important;
+		min-height: 100vh !important;
+		overflow: hidden !important;
+		background: #fafafa !important;
+	}
+	
+	.background_ffffff{
+		width: 100% !important;
+		min-height: 100vh !important;
+		overflow: hidden !important;
+		background: #ffffff !important;
+	}
+	
+
+	.yichuyincang{
+		white-space: nowrap;      /*超出的空白区域不换行*/
+		overflow: hidden;         /*超出隐藏*/
+		text-overflow: ellipsis;  /*文本超出显示省略号*/
+	}
+
+
+	
+	/* 通用字体颜色 */
+	.color0{
+		color: #000000 !important;
+	}
+	.colorF{
+		color: #ffffff !important;
+	}
+	.color3{
+		color: #333333 !important;
+	}
+	.color6{
+		color: #666666 !important;
+	}
+	.color9{
+		color: #999999 !important;
+	}
+	
+	
+	/* 通用字体大小 */
+	.Size16{
+		font-size: 16upx !important;
+	}
+	.Size18{
+		font-size: 18upx !important;
+	}
+	.Size20{
+		font-size: 20upx !important;
+	}
+	.Size22{
+		font-size: 22upx !important;
+	}
+	.Size24{
+		font-size: 24upx !important;
+	}
+	.Size26{
+		font-size: 26upx !important;
+	}
+	.Size28{
+		font-size: 28upx !important;
+	}
+	.Size32{
+		font-size: 32upx !important;
+	}
+	.Size34{
+		font-size: 34upx !important;
+	}
+	.Size36{
+		font-size:36upx !important;
+	}
+	.Size38{
+		font-size: 38upx !important;
+	}
+	.Size48{
+		font-size: 48upx !important;
+	}
+	.Size52{
+		font-size: 52upx !important;
+	}
+	.Size50{
+		font-size: 48upx !important;
+	}
+	
+	
+	/* 图片放大100% */
+	.img100{
+		width: 100% !important;
+		height: 100% !important;
+	
+	}
+	.borderRadius{
+		border-radius:50%;
+	}
+	
+	
+	/* 通用字体加粗 */
+	.weight600{
+		font-weight: 600 !important;
+	}
+	
+	.weight900{
+		font-weight: 900 !important;
+	}
+	
+	
+	
+	/* 通用空白垫底 */
+	.diandi3{
+		width: 100% !important;
+		height: 3upx !important;	
+	}
+	.diandi5{
+		width: 100% !important;
+		height: 5upx !important;	
+	}
+	.diandi10{
+		width: 100% !important;
+		height: 10upx !important;	
+	}
+	.diandi15{
+		width: 100% !important;
+		height: 15upx !important;	
+	}
+	.diandi20{
+		width: 100% !important;
+		height: 20upx !important;	
+	}
+	
+	.diandi30{
+		width: 100% !important;
+		height: 30upx !important;	
+	}
+	.diandi40{
+		width: 100% !important;
+		height: 40upx !important;	
+	}
+	.diandi50{
+		width: 100% !important;
+		height: 50upx !important;	
+	}
+	.diandi60{
+		width: 100% !important;
+		height: 60upx !important;
+	}
+	.diandi80{
+		width: 100% !important;
+		height: 80upx !important;
+	}
+	.diandi88{
+		width: 100% !important;
+		height: 88upx !important;
+		
+	}
+	.diandi98{
+		width: 100% !important;
+		height: 98upx !important;
+		
+	}
+	
+	.diandi100{
+		width: 100% !important;
+		height: 100upx !important;
+	}
+	
+	
+	
+	
+	/* 通用手机端转化 */
+	
+	/* 上下左右元素居中 */
+	.displayFlex_center{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	/* 上下左右元素居中 */
+	.displayFlex_fen{
+		display: flex;
+		justify-content:space-between;
+		align-items: center;
+	}
+	
+	
+	
+	/* 上下居中 元素靠左 */
+	.displayFlex_left{
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	
+	/* 上下居中 元素靠右 */
+	.displayFlex_right{
+		display: flex;
+		justify-content:flex-end;
+		align-items: center;
+	}
+	
+	
+	
+	.Margin010{
+		margin:0 10upx 0 10upx;
+	}
+	.Margin020{
+		margin:0 20upx 0 20upx;
+	}
+	.Margin025{
+		margin:0 25upx 0 25upx;
+	}
+	.Margin030{
+		margin:0 30upx 0 30upx;
+	}
+	
+	.Margin040{
+		margin:0 40upx 0 40upx;
+	}
+	.Margin050{
+		margin:0 50upx 0 50upx;
+	}
+	.Margin060{
+		margin:0 60upx 0 60upx;
+	}
+	.Margin080{
+		margin:0 80upx 0 80upx;
+	}
+	
+	.Margin0100{
+		margin:0 100upx 0 100upx;
+	}
+	
+	.Margin0160{
+		margin:0 160upx 0 160upx;
+	}
+	
+	.Margin200{
+		margin:20upx 0upx 20upx 0upx;
+	}
+	.Margin300{
+		margin:30upx 0upx 30upx 0upx;
+		
+	}
+	
+	.textAlignCenter{
+		text-align: center;
+	}
+	
+	.textAlignLeft{
+		text-align: left;
+	}
+	
+	.textAlignRight{
+		text-align: right;
+	}
+	
+	.fontWeight600{
+		font-weight: 600;
+	}
+	
+	.fontWeight900{
+		font-weight: 900;
+	}
+
+	.widths{
+		width:100%
+	}
+	.heights{
+		height: 100%;
+	}
+	

@@ -1,0 +1,1 @@
+<view class="data-v-22b7da99"><block wx:if="{{flag==0}}"><view data-event-opts="{{[['tap',[['clickAction',['$event']]]]]}}" class="{{['data-v-22b7da99',state==='normal'?normalClass:disabledClass]}}" bindtap="__e">{{state==='normal'?title:$root.g0}}</view></block><block wx:if="{{flag==1}}"><view class="coo data-v-22b7da99">{{state==='normal'?title:$root.g1}}</view></block></view>

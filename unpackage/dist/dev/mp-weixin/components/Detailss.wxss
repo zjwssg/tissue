@@ -1,0 +1,103 @@
+
+.Detailss_2{
+	width:100%;
+	height: 296rpx;
+	background: #f7dd4c;
+	border-radius: 20rpx 20rpx 0 0;
+	position: fixed;
+	bottom:98rpx;
+	/* z-index:9999999;
+	flex-direction: column; */
+}
+.Detailss_2_1{
+	width: 100%;
+	height: 78rpx;
+	/* background-color: #007AFF; */
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack:end;
+	-webkit-justify-content:flex-end;
+	        justify-content:flex-end;
+}
+.Detailss_2_1 view{
+	width: 78rpx;
+	height: 78rpx;
+	/* background-color: #40C255; */
+}
+.Detailss_2_2{
+	width: 100%;
+	/* height: 60upx; */
+	/* background-color: #40C255; */
+}
+.Detailss_2_2_1{
+	width: 100%;
+	height: 60rpx;
+	/* background-color: #F0AD4E; */
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+	-webkit-box-pack:justify;
+	-webkit-justify-content:space-between;
+	        justify-content:space-between;
+}
+.Detailss_2_2_1_2{
+	line-height: 60rpx;
+	font-size: 32rpx;
+	font-weight: 600;
+}
+.Detailss_2_2_1_1{
+	width: 145rpx;
+	height: 50rpx;
+	border-radius: 25rpx;
+	background-color: #18415d;
+	color: #FFFFFF;
+	line-height: 50rpx;
+	text-align: center;
+}
+.Detailss_2_2_2{
+	width: 100%;
+	min-height:50rpx;
+	line-height: 50rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	        justify-content: center;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	        flex-direction: row;
+}
+.Detailss_2_2_2_1{
+	width: 5%;
+	min-height:50rpx;
+	/* background-color: #007AFF; */
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+}
+.Detailss_2_2_2_2{
+	width: 95%;
+	min-height:50rpx;
+	/* background-color: #DD524D; */
+}
+.Detailss_3{
+	width: 100%;
+	height: 92rpx;
+	/* background-color: #007AFF; */
+	position: fixed;
+	bottom: 400rpx;
+}
+.Detailss_3 view{
+	width: 92rpx;
+	height: 92rpx;
+	/* background-color: #FFFFFF; */
+	border-radius: 15rpx;
+	margin-right: 32rpx;
+}
+
+

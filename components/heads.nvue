@@ -1,0 +1,90 @@
+<!-- heads.nvue  头部 -->
+<template>
+	<div>
+		<div class="Discount_1">
+			 <div class="diandi40"></div>
+			<div class="Discount_1_1">
+				<div class="Discount_1_1_2">
+					<div class="Discount_1_1_2_1"><image class="img100 Discount_1_1_2_1_1" src="../static/logo.png" mode=""></image></div>
+				</div>
+				<div class="Discount_1_1_1"><div class="Discount_1_1_1_1" @tap="headPortraitBtn()"><image class="img100 borderRadius" src="../static/6f25700c29258a9f.jpg" mode=""></image></div></div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		onLoad() {
+	
+		},
+		methods: {
+			headPortraitBtn(){
+				this.$emit('headPortraitBtn');
+			}
+		}
+	}
+</script>
+
+<style>
+	.Discount_1{
+		width:750upx;
+		height:130upx;
+		background-color: #f7dd4c;
+		position: fixed;
+		top: 0;
+		z-index:999;
+		
+	}
+	.Discount_1_1{
+		width: 100%;
+		height:90upx;
+		position: relative;
+		
+	}
+	.Discount_1_1_1{
+		width:120upx;
+		height: 90upx;
+		position: absolute;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.Discount_1_1_1_1{
+		width: 60upx;
+		height: 60upx;
+
+		border-radius: 50%;
+		border: 3upx solid #40c255;
+		display: flex;
+		justify-content: center;
+	}
+	.Discount_1_1_2{
+		width: 100%;
+		height: 90upx;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	
+		
+		
+	}
+	.Discount_1_1_2_1{
+		width: 102upx;
+		height: 57upx;
+
+		border-radius: 28upx;
+		
+	}
+	.Discount_1_1_2_1_1{
+		border-radius: 28upx;
+			width: 102upx;
+			height: 57upx;
+	}
+</style>
