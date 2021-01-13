@@ -6,16 +6,18 @@
 		<view @click="back" class="back" hover-class="css-hover">
 			<image :src="scan_img.back" style="width: 28px;height: 28px;"></image>
 		</view>
+		<!-- 上广告 -->
 		<view class="msg">
 			<view style="margin: 0 30upx 0 30upx">
 				<view class="msg_1"><image class="img100" style="border-radius: 30upx;width: 690upx;height: 240upx;" src="../../static/6f25700c29258a9f.jpg" mode=""></image></view>
 			</view>
 		</view>
+		<!-- 二维码 -->
 		<view class="flash" :style="{bottom: (height/2 - 120)+'px'}" @click="toFlash()" hover-class="css-hover">
 			<image class="flash-img" :src="flash_img" style="width: 30px;height: 30px;"></image>
 			<text class="flash-text" :class="flash?'flash-on':''">{{flash?i18n.ScanCode.TapClose:i18n.ScanCode.LightBright}}</text>
 		</view>
-		
+		<!-- 下广告 -->
 		<view class="msgs">
 			<view style="margin: 0 30upx 0 30upx">
 				<view class="msg_1"><image class="img100" style="border-radius: 30upx;width: 690upx;height: 240upx;" src="../../static/6f25700c29258a9f.jpg" mode=""></image></view>
@@ -239,7 +241,7 @@
 		width:690upx;
 		height: 240upx;
 		background-color: #1CBBB4;
-		margin-left: 30upx;
+		/* margin-left: 30upx; */
 		border-radius: 30upx;
 	}
 	/* .msg_1 image{

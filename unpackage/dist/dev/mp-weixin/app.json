@@ -52,6 +52,5 @@
     "mine": "/components/mine",
     "uni-section": "/components/uni-transition/uni-section",
     "uni-transition": "/components/uni-transition/uni-transition"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }

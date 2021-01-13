@@ -16,15 +16,13 @@
 		</div> 
 		 
 		 
-		 
-		
 		<!-- uni自带高德地图 -->
-		<!-- <map id="navmap" :style="{width: '750rpx', height: mapHeight + 'rpx'}"
+		<map id="navmap" :style="{width: '750rpx', height: mapHeight + 'rpx'}"
 		 
 		@regionchange="regionchange"
 		@markertap="markertap($event,['slide-bottom'])"
 		@controltap="controltap"
-		@tap="dianjiditu"
+		@tap="clickmap"
 		
 		:latitude="latitude"
 		:longitude="longitude"
@@ -33,10 +31,9 @@
 
 		enable-traffic
 		show-location
-		></map> -->
+		></map>
 		<!-- google地图原生ios插件 -->
-		 <dc-testmap ref="mycomponent" :style="{width: '750rpx', height: mapHeight + 'rpx'}" @mapLoaded="onMapLoaded"></dc-testmap>
-		
+		<dc-testmap ref="mycomponent" :style="{width: '750rpx', height: mapHeight + 'rpx'}" @mapLoaded="onMapLoaded"></dc-testmap>
 		
 		
 		<!-- <Scan-code @ScanCodeClick="ScanCodeClick()"></Scan-code> -->
@@ -86,7 +83,6 @@
 							<text class="Detailss_2_2_2_2_1">{{ i18n.index.LocationName }}:{{OBJ.dizhi}}</text>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>
@@ -352,16 +348,27 @@
 			},
 			
 			scan() {
-				//开始扫码
-				this.toHsScanCode({
-					evalName: "hs-scancode", //扫码回调监听事件
-					msg: "扫码啦", //提示文本
-					fil: '0,1,2' //条码类型
-				}, res => {
-					//扫码成功后 这里自己判断，如果要自己处理结果就返回 true
+				let url:"api/index/index";
+				params = {
+					user_id:sessionStorage.getItem("user_id"),
 					
-					return false
-				})
+				};
+				if(){
+					uni.switchTab({
+						url:"../login/login" 
+					})
+				}else{
+					//开始扫码
+					this.toHsScanCode({
+						evalName: "hs-scancode", //扫码回调监听事件
+						msg: "扫码啦", //提示文本
+						fil: '0,1,2' //条码类型
+					}, res => {
+						//扫码成功后 这里自己判断，如果要自己处理结果就返回 true
+						
+						return false
+					})
+				}
 			},
 			toHsScanCode(options, results) { //这里可以写成一个通用方法
 				const q = Object.entries(options).map(([key, value]) => `${key}=${value}`).join('&')
@@ -407,7 +414,7 @@
 			  
 			},
 			
-			dianjiditu() { //点击地图时触发
+			clickmap() { //点击地图时触发
 			  console.log("点击地图时触发")
 			},
 			controltap(e) {
