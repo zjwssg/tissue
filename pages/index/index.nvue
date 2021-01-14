@@ -88,9 +88,9 @@
 		</div>
 		</uni-transition>
 		
-		<!-- <view class="Detailss_3 displayFlex_right">
+		<view class="Detailss_3 displayFlex_right">
 				<view class="Detailss_3_1 displayFlex_right" @tap="HomingClick()"><image style=" width: 92upx;height: 92upx;" src="../../static/dingwei.png" mode=""></image></view>
-		</view> -->
+		</view>
 		
 		
 		
@@ -348,16 +348,18 @@
 			},
 			
 			scan() {
-				let url:"api/index/index";
-				params = {
-					user_id:sessionStorage.getItem("user_id"),
+				// let url:"api/index/index";
+				// params = {
+				// 	user_id:sessionStorage.getItem("user_id"),
 					
-				};
-				if(){
-					uni.switchTab({
-						url:"../login/login" 
-					})
-				}else{
+				// };
+				// if(){
+				// 	uni.switchTab({
+				// 		url:"../login/login" 
+				// 	})
+				// }else{
+					
+				// }
 					//开始扫码
 					this.toHsScanCode({
 						evalName: "hs-scancode", //扫码回调监听事件
@@ -368,7 +370,7 @@
 						
 						return false
 					})
-				}
+				
 			},
 			toHsScanCode(options, results) { //这里可以写成一个通用方法
 				const q = Object.entries(options).map(([key, value]) => `${key}=${value}`).join('&')

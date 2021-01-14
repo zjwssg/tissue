@@ -357,7 +357,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   data: function data() {
@@ -539,6 +538,18 @@ var _default =
     },
 
     scan: function scan() {
+      // let url:"api/index/index";
+      // params = {
+      // 	user_id:sessionStorage.getItem("user_id"),
+
+      // };
+      // if(){
+      // 	uni.switchTab({
+      // 		url:"../login/login" 
+      // 	})
+      // }else{
+
+      // }
       //开始扫码
       this.toHsScanCode({
         evalName: "hs-scancode", //扫码回调监听事件
@@ -549,6 +560,7 @@ var _default =
 
         return false;
       });
+
     },
     toHsScanCode: function toHsScanCode(options, results) {//这里可以写成一个通用方法
       var q = Object.entries(options).map(function (_ref) {var _ref2 = _slicedToArray(_ref, 2),key = _ref2[0],value = _ref2[1];return "".concat(key, "=").concat(value);}).join('&');
