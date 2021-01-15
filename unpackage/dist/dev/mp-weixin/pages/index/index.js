@@ -464,6 +464,7 @@ var _default =
     } },
 
   methods: {
+
     getinfo: function getinfo() {var _this3 = this;
       // console.log(11111111);
       var token = uni.getStorageSync('token');
@@ -473,8 +474,9 @@ var _default =
 
 
       console.log(url, params);
-      this.Http.Post(url, params, token).
-      then(function (data) {
+      this.Http.Post(url, params, token)
+      //异步执行(之前方法执行完后执行.then,防止数据获取不到)
+      .then(function (data) {
         console.log('mine' + data.data);
         _this3.user = data.data;
       });

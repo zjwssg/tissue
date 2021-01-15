@@ -279,6 +279,25 @@ var SCAN_MAPS = (_SCAN_MAPS = {}, _defineProperty(_SCAN_MAPS,
   },
 
   methods: {
+    Post: function Post(url, params) {
+      // console.log(url, params, token)
+      var promise = new Promise(function (resolve, reject) {
+        uni.request({
+          url: API_URL + url,
+          data: params,
+          method: 'POST',
+          header: { 'content-Type': 'application/x-www-form-urlencoded' },
+          success: function success(res) {
+            resolve(res.data);
+          },
+          fail: function fail(res) {
+            reject(res.data);
+          } });
+
+      });
+      return promise;
+    },
+
     webviewInit: function webviewInit() {var _this2 = this;
       var pages = getCurrentPages();
       var currentWebview = pages[pages.length - 1].$getAppWebview();
