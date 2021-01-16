@@ -15,14 +15,16 @@
 			</div>
 		</div> 
 		 
+		
 		 
+		
 		<!-- uni自带高德地图 -->
-		<!-- <map id="navmap" :style="{width: '750rpx', height: mapHeight + 'rpx'}"
+		 <map id="navmap" :style="{width: '750rpx', height: mapHeight + 'rpx'}"
 		 
 		@regionchange="regionchange"
 		@markertap="markertap($event,['slide-bottom'])"
 		@controltap="controltap"
-		@tap="clickmap"
+		@tap="dianjiditu"
 		
 		:latitude="latitude"
 		:longitude="longitude"
@@ -31,9 +33,10 @@
 
 		enable-traffic
 		show-location
-		></map> -->
+		></map> 
 		<!-- google地图原生ios插件 -->
-		<dc-testmap ref="mycomponent" :style="{width: '750rpx', height: mapHeight + 'rpx'}" @mapLoaded="onMapLoaded"></dc-testmap>
+		 <dc-testmap ref="mycomponent" :style="{width: '750rpx', height: mapHeight + 'rpx'}" @mapLoaded="onMapLoaded"></dc-testmap>
+		
 		
 		
 		<!-- <Scan-code @ScanCodeClick="ScanCodeClick()"></Scan-code> -->
@@ -43,8 +46,8 @@
 			<view class="diandi60"></view>
 			<view class="" @tap="scan()">
 				<view class="Detailss_1_1 displayFlex_center"><image style="width: 88upx;height: 88upx;" src="../../static/saoma.png" mode=""></image></view>
-				<!-- 扫码领纸 -->
-				<view class="Detailss_1_2 displayFlex_center"><text class="Detailss_1_2_1">{{ i18n.index.saoma }}</text></view>
+				<!-- 扫码领纸 {{ i18n.index.saoma }}-->
+				<view class="Detailss_1_2 displayFlex_center"><text class="Detailss_1_2_1">扫码领纸</text></view>
 			</view>
 		</view>
 		
@@ -69,8 +72,8 @@
 					<div class="Detailss_2_2_1">
 						<div class="Detailss_2_2_1_2 Size32 fontWeight600"><text class="Detailss_2_2_1_2_1">{{OBJ.name}}</text></div>
 						<div class="Detailss_2_2_1_1 displayFlex_center Size24" @tap="NavigationClick()">
-							<!-- 导航 -->
-							<div class="Detailss_2_2_1_1_1"><text class="Detailss_2_2_1_1_1_1">{{ i18n.index.Navigate }}</text></div>
+							<!-- 导航 {{ i18n.index.Navigate }}-->
+							<div class="Detailss_2_2_1_1_1"><text class="Detailss_2_2_1_1_1_1">导航</text></div>
 						</div>
 					</div>
 					<div class="diandi20"></div>
@@ -79,10 +82,11 @@
 							<image style="width: 32upx;height: 32upx;margin-top: -10upx;" src="../../static/wzs.png" mode=""></image>
 						</div>
 						<div class="Detailss_2_2_2_2">
-							<!-- 地点名称 -->
-							<text class="Detailss_2_2_2_2_1">{{ i18n.index.LocationName }}:{{OBJ.dizhi}}</text>
+							<!-- 地点名称 {{ i18n.index.LocationName }}-->
+							<text class="Detailss_2_2_2_2_1">地点名称:{{OBJ.dizhi}}</text>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>
@@ -118,47 +122,47 @@
 					</view> 
 					<view class="mine_1_1_1_2">
 						<view class="diandi40"></view>
-						<!-- 昵称 -->
-						<view class="mine_1_1_1_2_1 Size32 fontWeight600"><text class="mine_1_1_1_2_1_1">{{ user.user_nickname }}</text></view>
-						<view class="mine_1_1_1_2_2 Size26 "><text class="mine_1_1_1_2_2_1">{{user.user_phone}}</text></view>
+						<!-- 昵称 {{ i18n.my.Nickname }}-->
+						<view class="mine_1_1_1_2_1 Size32 fontWeight600"><text class="mine_1_1_1_2_1_1">昵称</text></view>
+						<view class="mine_1_1_1_2_2 Size26 "><text class="mine_1_1_1_2_2_1">18739072102</text></view>
 					</view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(2)">
 					<view class="mine_1_1_2_1 displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/xgxx.png" mode=""></image></view>
-					<!-- 修改信息 -->
-					<view class="mine_1_1_2_2 Size28 displayFlex_left"><text class="mine_1_1_2_2_1">{{ i18n.my.EditInformation }}</text></view>
+					<!-- 修改信息 {{ i18n.my.EditInformation }}-->
+					<view class="mine_1_1_2_2 Size28 displayFlex_left"><text class="mine_1_1_2_2_1">修改信息</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(3)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 32upx;margin-right: 43upx;" src="../../static/s.png" mode=""></image></view>
-					<!-- 修改手机号 -->
-					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">{{ i18n.my.EditMobileNumber }}</text></view>
+					<!-- 修改手机号 {{ i18n.my.EditMobileNumber }}-->
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">修改手机号</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(4)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/lll.png" mode=""></image></view>
-					<!-- 信息中心 -->
-					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">{{ i18n.my.informationCenter }}</text></view>
+					<!-- 信息中心 {{ i18n.my.informationCenter }}-->
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">信息中心</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(5)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/xin.png" mode=""></image></view>
-					<!-- 我的关注 -->
-					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">{{ i18n.my.myFollow }}</text></view>
+					<!-- 我的关注 {{ i18n.my.myFollow }}-->
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">我的关注</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(6)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/xs.png" mode=""></image></view>
-					<!-- 联系客服 -->
-					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">{{ i18n.my.ContactCustomerService }}</text></view>
+					<!-- 联系客服 {{ i18n.my.ContactCustomerService }}-->
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">联系客服</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(8)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/yuyan.png" mode=""></image></view>
-					<!-- 切换语言 -->
-					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">{{ i18n.tabBar.language }}</text></view>
+					<!-- 切换语言 {{ i18n.tabBar.language }}-->
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">切换语言</text></view>
 				</view>
 			</view>
 			<view class="diandi100"></view><view class="diandi100"></view><view class="diandi100"></view>
 			<view class="mine_2">
 				<view class="Margin030">
-					<!-- 退出登录 -->
-					<view class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">{{ i18n.my.LogOut }}</text></view>
+					<!-- 退出登录 {{ i18n.my.LogOut }}-->
+					<view class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">退出登录</text></view>
 				</view>
 			</view>
 		</view>
@@ -171,7 +175,6 @@
 	export default {
 		data() {
 			return {
-				user:[],
 				show: false,
 				transShow: false,
 				modeClass: ['fade'],
@@ -262,36 +265,18 @@
 				  this.mineHeight = res.screenHeight *2;
 		        } 
 		    });
-			  this.getinfo();//需要触发的函数
 		},
 		onReady() {  //必须使用onReady传入markers
 			var _this = this;
-			this.$refs.mycomponent.focus({"markers":_this.markers})
+			// this.$refs.mycomponent.focus({"markers":_this.markers})
 		},
 		computed: {
-		    i18n() {
-		        return this.$t('message');
-		    }
+			
+		    // i18n() {
+		    //     return this.$t('message');
+		    // }
 		},
 		methods: {
-			
-			getinfo(){
-				// console.log(11111111);
-				const token = uni.getStorageSync('token');
-				let url = '/api/client/get_info',
-				params = {
-					user_id:sessionStorage.getItem("user_id"),
-					
-				};
-				console.log(url, params)
-				this.Http.Post(url, params,token)
-				//异步执行(之前方法执行完后执行.then,防止数据获取不到)
-				.then(data => {
-					console.log('mine'+data.data)
-					this.user=data.data
-				})
-			},
-					 
 			dianji(){  //
 				uni.switchTab({
 					url:"../Discount/Discount"
@@ -350,29 +335,16 @@
 			},
 			
 			scan() {
-				// let url:"api/index/index";
-				// params = {
-				// 	user_id:sessionStorage.getItem("user_id"),
+				//开始扫码
+				this.toHsScanCode({
+					evalName: "hs-scancode", //扫码回调监听事件
+					msg: "扫码啦", //提示文本
+					fil: '0,1,2' //条码类型
+				}, res => {
+					//扫码成功后 这里自己判断，如果要自己处理结果就返回 true
 					
-				// };
-				// if(){
-				// 	uni.switchTab({
-				// 		url:"../login/login" 
-				// 	})
-				// }else{
-					
-				// }
-					//开始扫码
-					this.toHsScanCode({
-						evalName: "hs-scancode", //扫码回调监听事件
-						msg: "扫码啦", //提示文本
-						fil: '0,1,2' //条码类型
-					}, res => {
-						//扫码成功后 这里自己判断，如果要自己处理结果就返回 true
-						
-						return false
-					})
-				
+					return false
+				})
 			},
 			toHsScanCode(options, results) { //这里可以写成一个通用方法
 				const q = Object.entries(options).map(([key, value]) => `${key}=${value}`).join('&')
@@ -418,7 +390,7 @@
 			  
 			},
 			
-			clickmap() { //点击地图时触发
+			dianjiditu() { //点击地图时触发
 			  console.log("点击地图时触发")
 			},
 			controltap(e) {

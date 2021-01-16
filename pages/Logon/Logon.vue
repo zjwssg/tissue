@@ -103,7 +103,7 @@
 				inputUserName:"",
 				inputVerificationCode:"",
 
-				// ISagreement:false,
+				ISagreement:false,
 			}
 		},
 		onLoad() {

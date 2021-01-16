@@ -5,6 +5,7 @@ import App from './App'
 //验证码获取封装
 	import whCaptcha from 'common/wh-captcha/wh-captcha.vue';
 	Vue.component("whCaptcha", whCaptcha)
+	
 
 
 // 引入的封装方法
@@ -40,7 +41,8 @@ Vue.component("uniSection", uniSection)
 import uniTransition from './components/uni-transition/uni-transition.vue';
 Vue.component("uniTransition", uniTransition)		
 		
-		
+import store from './store/vuex.js'
+Vue.prototype.$store = store
 
 
 // 考虑规范性,使用 module.exports 导出,应该使用 require 引用

@@ -32,7 +32,7 @@ https://app.mockplus.cn/s/HDEzOSxB5  UI   彬彬
 
 
 
-
+<script src="./store/vuex.js"></script>
 <script>
 	export default {
 		onLaunch: function() {
@@ -52,7 +52,8 @@ https://app.mockplus.cn/s/HDEzOSxB5  UI   彬彬
 	
 	@import url("./common/UniversalCSS.css");
 	
-	/* #ifndef APP-NVUE */
+	
+	/* #ifndef APP-PLUS-NVUE */
 	@import "colorui/main.css";
 	@import "colorui/icon.css";
 	/* #endif */
