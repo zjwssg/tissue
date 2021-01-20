@@ -13,7 +13,7 @@
 			<view class="Margin040">
 				<view class="DiscountDetails_5_3_1 displayFlex_center">
 					<!-- 确定 -->
-					<view class="displayFlex_center Size26" @tap="DiscountDetailsBtn(2)">{{ i18n.popup.Confirm }}</view>
+					<view class="displayFlex_center Size26" @tap="DiscountDetailsBtn(1)">{{ i18n.popup.Confirm }}</view>
 				</view>
 			</view>
 		</view>
@@ -25,7 +25,7 @@
 				<view class="Successful_2_1">
 					<view class="Successful_2_1_1"><image class="img100" src="../../static/6f25700c29258a9f.jpg" mode=""></image></view>
 					<!-- 取消 -->
-					<view class="Successful_2_1_2 displayFlex_center Size24">{{ i18n.popup.cancel }}</view>
+					<view class="Successful_2_1_2 displayFlex_center Size24" @click="cancel()">{{ i18n.popup.cancel }}</view>
 				</view>
 			</view>
 		</view>
@@ -41,7 +41,7 @@
 	export default {
 		data() {
 			return {
-				ISadvertisement:false
+				ISadvertisement:true
 			}
 		},
 		onLoad() {
@@ -59,7 +59,17 @@
 		    }
 		},
 		methods: {
-	
+			DiscountDetailsBtn(index){
+				if(index == 1){
+					uni.navigateTo({
+					    url: './index'
+					})
+				}
+			},
+			
+			cancel: function() {
+				this.ISadvertisement = false;
+			},
 		}
 	}
 </script>

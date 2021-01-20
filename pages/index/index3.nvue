@@ -14,9 +14,12 @@
 				<div class="Discount_1_1_1 displayFlex_center"><div class="Discount_1_1_1_1" @tap="headPortraitBtn(['slide-left'])"><image class="img100 borderRadius Discount_1_1_1_1_1" src="../../static/6f25700c29258a9f.jpg" mode=""></image></div></div>
 			</div>
 		</div> 
-
+		 
+		
+		 
+		
 		<!-- uni自带高德地图 -->
-		<!-- <map id="navmap" :style="{width: '750rpx', height: mapHeight + 'rpx'}"
+		 <map id="navmap" :style="{width: '750rpx', height: mapHeight + 'rpx'}"
 		 
 		@regionchange="regionchange"
 		@markertap="markertap($event,['slide-bottom'])"
@@ -30,12 +33,10 @@
 
 		enable-traffic
 		show-location
-		></map> -->
+		></map> 
 		<!-- google地图原生ios插件 -->
-		<!-- <dc-testmap ref="mycomponent" :style="{width: '750rpx', height: mapHeight + 'rpx'}" @mapLoaded="onMapLoaded"></dc-testmap> -->
-		<div>
-			<mygooglemap ref="googlemaps" style="{width: '750rpx', height: mapHeight + 'rpx'}" @onMapLoaded="onMapLoaded"></mygooglemap>
-		</div>
+		 <dc-testmap ref="mycomponent" :style="{width: '750rpx', height: mapHeight + 'rpx'}" @mapLoaded="onMapLoaded"></dc-testmap>
+		
 		
 		
 		<!-- <Scan-code @ScanCodeClick="ScanCodeClick()"></Scan-code> -->
@@ -46,10 +47,7 @@
 			<view class="" @tap="scan()">
 				<view class="Detailss_1_1 displayFlex_center"><image style="width: 88upx;height: 88upx;" src="../../static/saoma.png" mode=""></image></view>
 				<!-- 扫码领纸 {{ i18n.index.saoma }}-->
-				<view class="Detailss_1_2 displayFlex_center" v-if="select == 1"><text class="Detailss_1_2_1">扫码领纸</text></view>
-				<view class="Detailss_1_2 displayFlex_center" v-if="select == 2"><text class="Detailss_1_2_1">Scan code to pick up tissue</text></view>
-				<view class="Detailss_1_2 displayFlex_center" v-if="select == 3"><text class="Detailss_1_2_1">Imbas kod untuk mengambil tisu</text></view>
-				<view class="Detailss_1_2 displayFlex_center" v-if="select == 4"><text class="Detailss_1_2_1">காகித அழைத்து ஸ்கேன் குறியீடு</text></view>
+				<view class="Detailss_1_2 displayFlex_center"><text class="Detailss_1_2_1">扫码领纸</text></view>
 			</view>
 		</view>
 		
@@ -75,10 +73,7 @@
 						<div class="Detailss_2_2_1_2 Size32 fontWeight600"><text class="Detailss_2_2_1_2_1">{{OBJ.name}}</text></div>
 						<div class="Detailss_2_2_1_1 displayFlex_center Size24" @tap="NavigationClick()">
 							<!-- 导航 {{ i18n.index.Navigate }}-->
-							<div class="Detailss_2_2_1_1_1" v-if="select == 1"><text class="Detailss_2_2_1_1_1_1">导航</text></div>
-							<div class="Detailss_2_2_1_1_1" v-if="select == 2"><text class="Detailss_2_2_1_1_1_1">Navigate</text></div>
-							<div class="Detailss_2_2_1_1_1" v-if="select == 3"><text class="Detailss_2_2_1_1_1_1">Navigasi</text></div>
-							<div class="Detailss_2_2_1_1_1" v-if="select == 4"><text class="Detailss_2_2_1_1_1_1">வழிசெலுத்தல்</text></div>
+							<div class="Detailss_2_2_1_1_1"><text class="Detailss_2_2_1_1_1_1">导航</text></div>
 						</div>
 					</div>
 					<div class="diandi20"></div>
@@ -88,10 +83,7 @@
 						</div>
 						<div class="Detailss_2_2_2_2">
 							<!-- 地点名称 {{ i18n.index.LocationName }}-->
-							<text class="Detailss_2_2_2_2_1" v-if="select == 1">地点名称:{{OBJ.dizhi}}</text>
-							<text class="Detailss_2_2_2_2_1" v-if="select == 2">Location name:{{OBJ.dizhi}}</text>
-							<text class="Detailss_2_2_2_2_1" v-if="select == 3">Nama lokasi:{{OBJ.dizhi}}</text>
-							<text class="Detailss_2_2_2_2_1" v-if="select == 4">இடத்தின் பெயர்:{{OBJ.dizhi}}</text>
+							<text class="Detailss_2_2_2_2_1">地点名称:{{OBJ.dizhi}}</text>
 						</div>
 					</div>
 					
@@ -118,7 +110,7 @@
 		
 		<uni-transition :mode-class="['fade']" :styles="maskClass" :show="show" @click="onTap" />
 		<uni-transition :duration="200" :mode-class="modeClass" :styles="transfromClass" :show="transShow" @click="onTap" @change="change"> 
-		<view class="mine_1" :style="{width: '650rpx', height: mineHeight + 'rpx'}">
+		<view class="mine_1" :style="{width: '550rpx', height: mineHeight + 'rpx'}">
 			<view class="mine_1_1">
 				<view class="diandi60"></view>
 				
@@ -138,60 +130,39 @@
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(2)">
 					<view class="mine_1_1_2_1 displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/xgxx.png" mode=""></image></view>
 					<!-- 修改信息 {{ i18n.my.EditInformation }}-->
-					<view class="mine_1_1_2_2 Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">修改信息</text></view>
-					<view class="mine_1_1_2_2 Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">Edit information</text></view>
-					<view class="mine_1_1_2_2 Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Edit maklumat</text></view>
-					<view class="mine_1_1_2_2 Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">தகவலை மாற்றவும்</text></view>
+					<view class="mine_1_1_2_2 Size28 displayFlex_left"><text class="mine_1_1_2_2_1">修改信息</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(3)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 32upx;margin-right: 43upx;" src="../../static/s.png" mode=""></image></view>
 					<!-- 修改手机号 {{ i18n.my.EditMobileNumber }}-->
-					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">修改手机号</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">Edit mobile number</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Edit nombor telefon bimbit</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">மொபைல் போன் எண் மாற்ற</text></view>
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">修改手机号</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(4)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/lll.png" mode=""></image></view>
 					<!-- 信息中心 {{ i18n.my.informationCenter }}-->
-					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">信息中心</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">information Center</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Pusat maklumat</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">தகவல் மையம்</text></view>
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">信息中心</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(5)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/xin.png" mode=""></image></view>
 					<!-- 我的关注 {{ i18n.my.myFollow }}-->
-					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">我的关注</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">my follow</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">ikutan saya</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">என் கவனம்</text></view>
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">我的关注</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(6)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/xs.png" mode=""></image></view>
 					<!-- 联系客服 {{ i18n.my.ContactCustomerService }}-->
-					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">联系客服</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">Contact Customer Service</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Hubungi Perkhidmatan Pelanggan</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">தொடர்பு வாடிக்கையாளர் சேவை</text></view>
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">联系客服</text></view>
 				</view>
 				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(8)">
 					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/yuyan.png" mode=""></image></view>
 					<!-- 切换语言 {{ i18n.tabBar.language }}-->
-					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">切换语言</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">Current language</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Bahasa semasa</text></view>
-					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">நடப்பு மொழி</text></view>
+					<view class="Size28 displayFlex_left"><text class="mine_1_1_2_2_1">切换语言</text></view>
 				</view>
 			</view>
 			<view class="diandi100"></view><view class="diandi100"></view><view class="diandi100"></view>
 			<view class="mine_2">
 				<view class="Margin030">
 					<!-- 退出登录 {{ i18n.my.LogOut }}-->
-					<view v-if="select == 1" class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">退出登录</text></view>
-					<view v-if="select == 2" class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">Log Out</text></view>
-					<view v-if="select == 3" class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">Log keluar</text></view>
-					<view v-if="select == 4" class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">வெளியேறு</text></view>
+					<view class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">退出登录</text></view>
 				</view>
 			</view>
 		</view>
@@ -204,7 +175,6 @@
 	export default {
 		data() {
 			return {
-				select:"简体中文",
 				show: false,
 				transShow: false,
 				modeClass: ['fade'],
@@ -286,70 +256,19 @@
 					longitude: 112.42676497,
 				},
 			}
-			
 		},
 		onLoad(){
-			console.log('App Launch');
-			//app启动时打开启动广告页
-			var w = plus.webview.open(
-				'../../hybrid/html/advertise/advertise.html',
-				'本地地址',
-				{ top: 0, bottom: 0, zindex: 999 },
-				'fade-in',
-				500
-			); 
-			//设置定时器，4s后关闭启动广告页
-			// setTimeout(function() {
-			// 	plus.webview.close(w);
-			// }, 4000);
-			
 		    uni.getSystemInfo({
 		        success:  (res) => {     // 需要使用箭头函数，swiper 高度才能设置成功
 		          this.mapHeight = res.windowHeight *2 - 110;
-				  //console.log( this.mapHeight);
+				  console.log( this.mapHeight);
 				  this.mineHeight = res.screenHeight *2;
 		        } 
 		    });
 		},
 		onReady() {  //必须使用onReady传入markers
-			// var _this = this;
+			var _this = this;
 			// this.$refs.mycomponent.focus({"markers":_this.markers})
-			//this.$refs.googlemaps.focus("esfsfasdf");
-		},
-		onShow() {
-			
-			//此处测试传值 瞎写的   传值的结构应该是：
-			/* {markers: [
-			    {  //当前位置的
-			 	iconPath: "../../static/zs.png",
-			 	id: 100,
-			 	latitude: 34.66642895,
-			 	longitude: 112.42676497,
-			 	width:40,
-			 	height:40
-			       },
-			      { //商家端位置的
-			 	iconPath: "../../static/duoweizhi.png",
-			 	id:101,
-				latitude: 34.66337572,
-			 	longitude: 112.4195981,
-			 	width:40,
-			 	height:40
-			       }
-			]} */
-			
-			
-			var select = uni.getStorageSync("select");
-			if(select == "zh-CN"){ //中文
-				this.select = 1;
-			}else if(select == "en-US"){ //英文
-				this.select = 2;
-			}else if(select == "zh-HK"){  //马来西亚文
-				this.select = 3;
-			}else if(select == "dr-M"){ //淡米尔文
-				this.select = 4;
-			}
-			//this.$refs.googlemaps.focus({"markers":_this.markers});
 		},
 		computed: {
 			
@@ -358,15 +277,12 @@
 		    // }
 		},
 		methods: {
-			onMapLoaded(e) {
-				console.log("onMapLoaded=" + e); //此处是点击事件回调   取值是：e.detail.id
-			},
 			dianji(){  //
 				uni.switchTab({
 					url:"../Discount/Discount"
 				})
 			},
-			/* onMapLoaded(e){
+			onMapLoaded(e){
 				//e.detail.id 是标记点的id  拿到id做其他操作
 				if(e.detail.id == 100){
 					this.OBJ = {
@@ -416,28 +332,9 @@
 				this.transShows = !this.transShow;
 				
 				
-			}, */
+			},
 			
 			scan() {
-				/* let obj = {
-					"cmd": 1000,
-					"data": {digital: 1,msg: "run" }, 
-					"sn": "ookkma", 
-					"nonceStr": "135",
-				}
-				uni.request({
-					url:"http://47.98.243.156:8090/api/equipment/directive_issue",
-					data:{
-						"data" :JSON.stringify(obj)
-					},
-					method: 'POST',
-					dataType:'json',
-					header: {'content-type': 'application/x-www-form-urlencoded'},
-					
-					success: res => {
-						console.log(res);
-					},
-				}); */
 				//开始扫码
 				this.toHsScanCode({
 					evalName: "hs-scancode", //扫码回调监听事件
@@ -464,7 +361,7 @@
 						})
 					} else {
 						//if (error.errMsg === "scanCode:fail cancel") toast("扫码取消")
-						//else  toast("扫码出错")
+						// else  toast("扫码出错")
 					}
 				})
 				uni.navigateTo({
@@ -853,7 +750,7 @@
 	
 	
 	.mine_1{
-		width:600upx;
+		width:550upx;
 		height:1500upx;
 		background-color: #f7dd4c;
 		position: fixed;
@@ -862,7 +759,7 @@
 		z-index:9999999;
 	}
 	.mine_1_1{
-		width:600upx;
+		width:550upx;
 		/* height: 264upx; */
 		/* background-color: #4CD964; */
 		
@@ -937,7 +834,7 @@
 	}
 	
 	.mine_1_1_2{
-		width:600upx;
+		width:550upx;
 		height: 90upx;
 		flex-direction:row;
 		align-items: center;
@@ -953,7 +850,7 @@
 	}
 	
 	.mine_2{
-		width: 600upx;
+		width: 550upx;
 		height: 76upx;
 		/* background-color: #007AFF; */
 	}

@@ -75,21 +75,21 @@
 			
 			
 			getlist(){
-							// console.log(11111111);
-									const token = uni.getStorageSync('token');
-							let url = '/api/user/get_shop_list',
-								params = {
-								
-									
-								};
-							console.log(url, params)
-							this.Http.Post(url, params,token)
-								.then(data => {
-									console.log(data.data)
-									this.user=data.data
-								})
-					 
-							},
+			// console.log(11111111);
+				const token = uni.getStorageSync('token');
+				let url = '/api/user/get_shop_list',
+				params = {
+				
+					
+				};
+				console.log(url, params)
+				this.Http.Post(url, params,token)
+				.then(data => {
+					console.log(data.data)
+					this.user=data.data
+				})
+				
+			},
 			
 			
 			mask() {

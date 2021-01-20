@@ -38,7 +38,7 @@ export default {
                 },
 				{
 				    imgUrl: '../../static/hk.png',
-				    value: '淡米尔文',
+				    value: 'தமிழ்',
 				    checked: false,
 				    language: 'dr-M'
 				}
@@ -87,6 +87,7 @@ export default {
                     uni.setStorageSync('index', i);
                     // 存储选择的语言
                     uni.setStorageSync('select', items[i].language);
+					console.log(uni.getStorageSync("select"))
                     _this.$i18n.locale = items[i].language;
 					// tabbar多语言
 					uni.setTabBarItem({

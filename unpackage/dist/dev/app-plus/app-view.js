@@ -1244,7 +1244,15 @@ var render = function() {
                       ),
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
+                        {
+                          staticClass: _vm._$g(16, "sc"),
+                          attrs: { _i: 16 },
+                          on: {
+                            click: function($event) {
+                              return _vm.$handleViewEvent($event)
+                            }
+                          }
+                        },
                         [_vm._v(_vm._$g(16, "t0-0"))]
                       )
                     ],

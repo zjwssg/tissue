@@ -103,21 +103,21 @@
 		 
 		methods: {
 			getlist(){
-							// console.log(11111111);
-									const token = uni.getStorageSync('token');
-							let url = '/api/user/get_shop_list',
-								params = {
-								
-									
-								};
-							console.log(url, params)
-							this.Http.Post(url, params,token)
-								.then(data => {
-									console.log(data.data)
-									this.articles=data.data
-								})
-					 
-							},
+				// console.log(11111111);
+						const token = uni.getStorageSync('token');
+				let url = '/api/user/get_shop_list',
+					params = {
+					
+						
+					};
+				console.log(url, params)
+				this.Http.Post(url, params,token)
+					.then(data => {
+						console.log(data.data)
+						this.articles=data.data
+					})
+		 
+				},
 			searchBtn(index){
 				if(index == 1){
 					uni.navigateTo({
