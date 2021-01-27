@@ -32,7 +32,6 @@ https://app.mockplus.cn/s/HDEzOSxB5  UI   彬彬
 
 
 
-<script src="./store/vuex.js"></script>
 <script>
 	export default {
 		onLaunch: function() {
@@ -49,9 +48,9 @@ https://app.mockplus.cn/s/HDEzOSxB5  UI   彬彬
 
 <style>
 	/*每个页面公共css */
-	
+
 	@import url("./common/UniversalCSS.css");
-	
+
 	
 	/* #ifndef APP-PLUS-NVUE */
 	@import "colorui/main.css";

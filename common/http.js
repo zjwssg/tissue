@@ -4,7 +4,7 @@
 
 
 
-const API_URL = "http://www.zhijin.com:8080/";//47.98.243.156:8090
+const API_URL = "http://47.98.243.156:8090";//47.98.243.156:8090
 
 function Post(url, params) {
   // console.log(url, params, token)

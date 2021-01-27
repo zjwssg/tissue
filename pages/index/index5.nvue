@@ -1,0 +1,935 @@
+<template>
+	<view class="index">
+		<!-- <heads @headPortraitBtn="headPortraitBtn(['slide-left'])"></heads> -->
+		
+		<!-- 头部 -->
+		<div class="Discount_1">
+			<div class="diandi40"></div>
+			<div class="Discount_1_1">
+				<div class="Discount_1_1_2 displayFlex_center">
+					<div class="Discount_1_1_2_1">
+						<image class="img100 Discount_1_1_2_1_img" @tap="dianji()" src="../../static/logo.png" mode=""></image>
+					</div>
+				</div>
+				<div class="Discount_1_1_1 displayFlex_center"><div class="Discount_1_1_1_1" @tap="headPortraitBtn(['slide-left'])"><image class="img100 borderRadius Discount_1_1_1_1_1" src="../../static/6f25700c29258a9f.jpg" mode=""></image></div></div>
+			</div>
+		</div> 
+		 
+		  
+		 
+		
+		<!-- uni自带高德地图 -->
+		<!-- <map id="navmap" :style="{width: '750rpx', height: mapHeight + 'rpx'}"
+		 
+		@regionchange="regionchange"
+		@markertap="markertap($event,['slide-bottom'])"
+		@controltap="controltap"
+		@tap="dianjiditu"
+		
+		:latitude="latitude"
+		:longitude="longitude"
+		:scale="15"
+		:markers="markers" 
+
+		enable-traffic
+		show-location
+		></map> -->
+		<!-- google地图原生ios插件 -->
+		 <dc-testmap ref="mycomponent" :style="{width: '750rpx', height: mapHeight + 'rpx'}" @mapLoaded="onMapLoaded"></dc-testmap>
+		
+		
+		
+		<!-- <Scan-code @ScanCodeClick="ScanCodeClick()"></Scan-code> -->
+		
+		
+		<view class="Detailss_1">
+			<view class="diandi60"></view>
+			<view class="" @tap="scan()">
+				<view class="Detailss_1_1 displayFlex_center"><image style="width: 88upx;height: 88upx;" src="../../static/saoma.png" mode=""></image></view>
+				<!-- 扫码领纸 {{ i18n.index.saoma }}-->
+				<view class="Detailss_1_2 displayFlex_center" v-if="select == 1"><text class="Detailss_1_2_1">扫码领纸</text></view>
+				<view class="Detailss_1_2 displayFlex_center" v-if="select == 2"><text class="Detailss_1_2_1">Scan code to pick up tissue</text></view>
+				<view class="Detailss_1_2 displayFlex_center" v-if="select == 3"><text class="Detailss_1_2_1">Imbas kod untuk mengambil tisu</text></view>
+				<view class="Detailss_1_2 displayFlex_center" v-if="select == 4"><text class="Detailss_1_2_1">காகித அழைத்து ஸ்கேன் குறியீடு</text></view>
+			</view>
+		</view>
+		
+		
+		
+		
+		<!-- <uni-transition :mode-class="['fade']" :styles="maskClasss" :show="shows" @click="onTaps" />
+		<uni-transition :duration="500" :mode-class="modeClasss" :styles="transfromClasss" :show="transShows" @click="onTaps" @change="changes"> 	
+			<view class="index_1">
+				<Detailss @closeClick="closeClick(['slide-bottom'])" @NavigationClick="NavigationClick()" @HomingClick="HomingClick()" :judgeipt="judgeipt"></Detailss>
+			</view>
+		</uni-transition> -->
+		
+		<!-- 商铺详情 -->
+		<uni-transition :mode-class="['fade']" :styles="maskClasss" :show="shows" @click="onTaps" />
+		<uni-transition :duration="200" :mode-class="modeClasss" :styles="transfromClasss" :show="transShows" @click="onTaps" @change="changes"> 	
+		<div class="Detailss_2">
+			<div class="Detailss_2_1 displayFlex_right"><div class="Detailss_2_1_1 displayFlex_center" @tap="closeClick()"><image style="width: 32upx;height:32upx;" src="../../static/xx.png" mode=""></image></div></div>
+			<div class="diandi30"></div>
+			<div class="Detailss_2_2">
+				<div class="Margin030">
+					<div class="Detailss_2_2_1">
+						<div class="Detailss_2_2_1_2 Size32 fontWeight600"><text class="Detailss_2_2_1_2_1">{{OBJ.name}}</text></div>
+						<div class="Detailss_2_2_1_1 displayFlex_center Size24" @tap="NavigationClick()">
+							<!-- 导航 {{ i18n.index.Navigate }}-->
+							<div class="Detailss_2_2_1_1_1" v-if="select == 1"><text class="Detailss_2_2_1_1_1_1">导航</text></div>
+							<div class="Detailss_2_2_1_1_1" v-if="select == 2"><text class="Detailss_2_2_1_1_1_1">Navigate</text></div>
+							<div class="Detailss_2_2_1_1_1" v-if="select == 3"><text class="Detailss_2_2_1_1_1_1">Navigasi</text></div>
+							<div class="Detailss_2_2_1_1_1" v-if="select == 4"><text class="Detailss_2_2_1_1_1_1">வழிசெலுத்தல்</text></div>
+						</div>
+					</div>
+					<div class="diandi20"></div>
+					<div class="Detailss_2_2_2 Size24">
+						<div class="Detailss_2_2_2_1">
+							<image style="width: 32upx;height: 32upx;margin-top: -10upx;" src="../../static/wzs.png" mode=""></image>
+						</div>
+						<div class="Detailss_2_2_2_2">
+							<!-- 地点名称 {{ i18n.index.LocationName }}-->
+							<text class="Detailss_2_2_2_2_1" v-if="select == 1">地点名称:{{OBJ.dizhi}}</text>
+							<text class="Detailss_2_2_2_2_1" v-if="select == 2">Location name:{{OBJ.dizhi}}</text>
+							<text class="Detailss_2_2_2_2_1" v-if="select == 3">Nama lokasi:{{OBJ.dizhi}}</text>
+							<text class="Detailss_2_2_2_2_1" v-if="select == 4">இடத்தின் பெயர்:{{OBJ.dizhi}}</text>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		</uni-transition>
+		
+		<!-- <view class="Detailss_3 displayFlex_right">
+				<view class="Detailss_3_1 displayFlex_right" @tap="HomingClick()"><image style=" width: 92upx;height: 92upx;" src="../../static/dingwei.png" mode=""></image></view>
+		</view> -->
+		
+		
+		
+		
+		
+		<!-- <uni-transition :mode-class="['fade']" :styles="maskClass" :show="show" @click="onTap" />
+		<uni-transition :duration="500" :mode-class="modeClass" :styles="transfromClass" :show="transShow" @click="onTap" @change="change"> 
+			<mine @mineClick="mineClick($event,['slide-left'])"></mine>
+		</uni-transition> -->
+		
+		<!-- 我的 -->
+		
+		
+		<uni-transition :mode-class="['fade']" :styles="maskClass" :show="show" @click="onTap" />
+		<uni-transition :duration="200" :mode-class="modeClass" :styles="transfromClass" :show="transShow" @click="onTap" @change="change"> 
+		<view class="mine_1" :style="{width: '650rpx', height: mineHeight + 'rpx'}">
+			<view class="mine_1_1">
+				<view class="diandi60"></view>
+				
+				<view class="mine_1_1_1" @tap="mineClick(1)"> 
+					<view class="mine_1_1_1_1">
+						<view class="mine_1_1_1_1_1">
+							<image class="mine_1_1_1_1_1_1_10" src="../../static/6f25700c29258a9f.jpg" mode=""></image>
+						</view>
+					</view> 
+					<view class="mine_1_1_1_2">
+						<view class="diandi40"></view>
+						<!-- 昵称 {{ i18n.my.Nickname }}-->
+						<view class="mine_1_1_1_2_1 Size32 fontWeight600"><text class="mine_1_1_1_2_1_1">昵称</text></view>
+						<view class="mine_1_1_1_2_2 Size26 "><text class="mine_1_1_1_2_2_1">18739072102</text></view>
+					</view>
+				</view>
+				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(2)">
+					<view class="mine_1_1_2_1 displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/xgxx.png" mode=""></image></view>
+					<!-- 修改信息 {{ i18n.my.EditInformation }}-->
+					<view class="mine_1_1_2_2 Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">修改信息</text></view>
+					<view class="mine_1_1_2_2 Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">Edit information</text></view>
+					<view class="mine_1_1_2_2 Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Edit maklumat</text></view>
+					<view class="mine_1_1_2_2 Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">தகவலை மாற்றவும்</text></view>
+				</view>
+				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(3)">
+					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 32upx;margin-right: 43upx;" src="../../static/s.png" mode=""></image></view>
+					<!-- 修改手机号 {{ i18n.my.EditMobileNumber }}-->
+					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">修改手机号</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">Edit mobile number</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Edit nombor telefon bimbit</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">மொபைல் போன் எண் மாற்ற</text></view>
+				</view>
+				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(4)">
+					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/lll.png" mode=""></image></view>
+					<!-- 信息中心 {{ i18n.my.informationCenter }}-->
+					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">信息中心</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">information Center</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Pusat maklumat</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">தகவல் மையம்</text></view>
+				</view>
+				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(5)">
+					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/xin.png" mode=""></image></view>
+					<!-- 我的关注 {{ i18n.my.myFollow }}-->
+					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">我的关注</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">my follow</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">ikutan saya</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">என் கவனம்</text></view>
+				</view>
+				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(6)">
+					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/xs.png" mode=""></image></view>
+					<!-- 联系客服 {{ i18n.my.ContactCustomerService }}-->
+					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">联系客服</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">Contact Customer Service</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Hubungi Perkhidmatan Pelanggan</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">தொடர்பு வாடிக்கையாளர் சேவை</text></view>
+				</view>
+				<view class="mine_1_1_2 displayFlex_left" @tap="mineClick(8)">
+					<view class="displayFlex_left"><image style="width:32upx;height:32upx;margin-left: 36upx;margin-right: 43upx;" src="../../static/yuyan.png" mode=""></image></view>
+					<!-- 切换语言 {{ i18n.tabBar.language }}-->
+					<view class="Size28 displayFlex_left" v-if="select == 1"><text class="mine_1_1_2_2_1">切换语言</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 2"><text class="mine_1_1_2_2_1">Current language</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 3"><text class="mine_1_1_2_2_1">Bahasa semasa</text></view>
+					<view class="Size28 displayFlex_left" v-if="select == 4"><text class="mine_1_1_2_2_1">நடப்பு மொழி</text></view>
+				</view>
+			</view>
+			<view class="diandi100"></view><view class="diandi100"></view><view class="diandi100"></view>
+			<view class="mine_2">
+				<view class="Margin030">
+					<!-- 退出登录 {{ i18n.my.LogOut }}-->
+					<view v-if="select == 1" class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">退出登录</text></view>
+					<view v-if="select == 2" class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">Log Out</text></view>
+					<view v-if="select == 3" class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">Log keluar</text></view>
+					<view v-if="select == 4" class="mine_2_1 displayFlex_center Size26" @tap="mineClick(7)"><text class="mine_2_1_1">வெளியேறு</text></view>
+				</view>
+			</view>
+		</view>
+		</uni-transition>
+	</view>
+</template>
+
+
+<script>
+	export default {
+		data() {
+			return {
+				select:"简体中文",
+				show: false,
+				transShow: false,
+				modeClass: ['fade'],
+				// 遮照层样式： 
+				maskClass: {'position': 'fixed','bottom': 0,'top': 0,'left': 0,'right': 0,'background-color': 'rgba(0, 0, 0, 0.6)','z-index': '999998'},
+				// 主元素样式 
+				transfromClass: {'position': 'fixed','bottom': "0",'top': 0,'left': 0,'right': 0,'display': 'flex','justify-content': 'center','align-items': 'center','z-index': '999999'},
+				
+				
+				
+				judgeipt:false,
+				
+				shows: false,
+				transShows: false,
+				modeClasss: ['slide-bottom'],
+				// 遮照层样式：
+				maskClasss: {'position': 'fixed','bottom': 0,'top': 0,'left': 0,'right': 0,'background-color': 'rgba(0, 0, 0, 0.4)','z-index': '99'},
+				// 主元素样式
+				transfromClasss: {'position': 'fixed','bottom': "0",'top': 0,'left': 0,'right': 0,'display': 'flex','justify-content': 'center','align-items': 'center','z-index': '999'},
+				
+				
+				// 定位
+				markers: [
+					{  //当前位置的
+				      iconPath: "../../static/zs.png",
+				      id: 100,
+				      latitude: 34.66642895,
+				      longitude: 112.42676497,
+				      width:40,
+				      height:40
+					},
+					{ //商家端位置的
+					  iconPath: "../../static/duoweizhi.png",
+					  id:101,
+					  latitude: 34.66337572,
+					  longitude: 112.4195981,
+					  width:40,
+					  height:40
+					},
+					{
+					  iconPath: "../../static/duoweizhi.png",
+					  id: 102,
+					  latitude: 34.66856439,
+					  longitude: 112.43021965,
+					  width:40,
+					  height:40
+					},
+					{
+					  iconPath: "../../static/duoweizhi.png",
+					  id: 103,
+					  latitude: 34.66388754,
+					  longitude: 112.42824554,
+					  width:40,
+					  height:40
+					},
+					{
+					  iconPath: "../../static/duoweizhi.png",
+					  id: 104,
+					  latitude: 34.65857502,
+					  longitude: 112.43118525,
+					  width:40,
+					  height:40
+					},
+				],
+				latitude:34.66642895,
+				longitude:112.42676497,
+				 
+				
+				mapHeight: 1200,
+				mineHeight:1200,
+				
+				
+				// 商铺数据详情
+				OBJ:{
+					id:100,
+					name:"100号机器",
+					dizhi:"100号机器的地址位置就是这里",
+					latitude: 34.66642895,
+					longitude: 112.42676497,
+				},
+			}
+		},
+		onLoad(){
+		    uni.getSystemInfo({
+		        success:  (res) => {     // 需要使用箭头函数，swiper 高度才能设置成功
+		          this.mapHeight = res.windowHeight *2 - 110;
+				  console.log( this.mapHeight);
+				  this.mineHeight = res.screenHeight *2;
+		        } 
+		    });
+		},
+		onReady() {  //必须使用onReady传入markers
+			var _this = this;
+			this.$refs.mycomponent.focus({"markers":_this.markers})
+		},
+		onShow() {
+			
+			var select = uni.getStorageSync("select");
+			if(select == "zh-CN"){ //中文
+				this.select = 1;
+			}else if(select == "en-US"){ //英文
+				this.select = 2;
+			}else if(select == "zh-HK"){  //马来西亚文
+				this.select = 3;
+			}else if(select == "dr-M"){ //淡米尔文
+				this.select = 4;
+			}
+		},
+		computed: {
+			
+		    // i18n() {
+		    //     return this.$t('message');
+		    // }
+		},
+		methods: {
+			dianji(){  //
+				uni.switchTab({
+					url:"../Discount/Discount"
+				})
+			},
+			onMapLoaded(e){
+				//e.detail.id 是标记点的id  拿到id做其他操作
+				if(e.detail.id == 100){
+					this.OBJ = {
+						id:100,
+						name:"100号机器",
+						dizhi:"100号机器的地址位置就是这里",
+						latitude: 34.66642895,
+						longitude: 112.42676497,
+					}
+				}else if(e.detail.id == 101){
+					this.OBJ = {
+						id:101,
+						name:"101号机器",
+						dizhi:"101号机器的地址位置就是这里",
+						latitude: 34.66337572,
+						longitude: 112.4195981,
+					}
+				}else if(e.detail.id == 102){
+					this.OBJ = {
+						id:102,
+						name:"102号机器",
+						dizhi:"102号机器的地址位置就是这里",
+						latitude: 34.66856439,
+						longitude: 112.43021965,
+					}
+				}else if(e.detail.id == 103){
+					this.OBJ = {
+						id:103,
+						name:"103号机器",
+						dizhi:"103号机器的地址位置就是这里",
+						latitude: 34.66388754,
+						longitude: 112.42824554,
+					}
+				}else if(e.detail.id == 104){
+					this.OBJ = {
+						id:104,
+						name:"104号机器",
+						dizhi:"104号机器的地址位置就是这里",
+						latitude: 34.65857502,
+						longitude: 112.43118525,
+					}
+				}
+				
+				this.judgeipt = true;
+				this.shows = !this.shows;
+				this.modeClasss = ['slide-bottom'];
+				this.transShows = !this.transShow;
+				
+				
+			},
+			
+			scan() {
+				//开始扫码
+				this.toHsScanCode({
+					evalName: "hs-scancode", //扫码回调监听事件
+					msg: "扫码啦", //提示文本
+					fil: '0,1,2' //条码类型
+				}, res => {
+					//扫码成功后 这里自己判断，如果要自己处理结果就返回 true
+					
+					return false
+				})
+			},
+			toHsScanCode(options, results) { //这里可以写成一个通用方法
+				const q = Object.entries(options).map(([key, value]) => `${key}=${value}`).join('&')
+				uni.$on(options.evalName || "hs-scancode", ([error, res]) => {
+					if (res) { //扫码结果
+						uni.navigateBack({
+							delta: 1,
+							animationType: "fade-out",//用 fade-out 关闭页面，减少扫码成功后跳转页面的闪动
+							animationDuration: 300,
+						})
+						if (results && results(res) === true) return;
+						uni.navigateTo({
+							url: `/pages/scan-results/scan-results?msg=${encodeURIComponent(res.result)}`
+						})
+					} else {
+						//if (error.errMsg === "scanCode:fail cancel") toast("扫码取消")
+						// else  toast("扫码出错")
+					}
+				})
+				uni.navigateTo({
+					url: `/pages/hs-scancode/hs-scancode?${q}`
+				})
+			},
+			
+			
+			
+			
+			// =========地图============
+			regionchange(e) {
+			  console.log(e.type)
+			},
+			markertap(e,mode) { //点击标记点时触发，
+				console.log("111")
+				console.log(e.detail.markerId)
+				if(e.detail.markerId == -1){
+					return false;
+				}
+				console.log(e)
+				this.judgeipt = true; 
+				this.shows = !this.shows
+				this.modeClasss = mode
+				this.transShows = !this.transShow
+			  
+			},
+			
+			dianjiditu() { //点击地图时触发
+			  console.log("点击地图时触发")
+			},
+			controltap(e) {
+			  // console.log(e.controlId)
+			},
+			
+			
+			
+			HomingClick(e) {  //复位
+			   uni.createMapContext("navmap", this).moveToLocation({
+			           longitude:"112.42676497",
+			           latitude: "34.66642895",
+			         });
+			},
+			// ======================
+			
+			
+			
+			mask() {
+				this.show = true
+			},
+			onTap() {
+				this.transShow = this.show = false
+			
+			},
+			change(e) {
+				console.log(e.detail);
+			},
+			
+			
+			onTaps() {
+				this.transShows = this.shows = false
+			},
+			changes(e) {
+				console.log(e.detail);
+			},
+			
+			
+			
+			headPortraitBtn(mode){//点击头像
+				console.log("点击1")
+				this.show = !this.show
+				this.modeClass = mode
+				this.transShow = !this.transShow
+							
+			}, 
+			ScanCodeClick(){ //扫码领纸
+				console.log("扫码领纸");
+				
+				// 允许从相机和相册扫码
+				// uni.scanCode({
+				//     success: function (res) {
+				//         console.log('条码类型：' + res.scanType);
+				//         console.log('条码内容：' + res.result);
+				//     }
+				// }); 
+				
+				// //开始扫码
+				// this.toHsScanCode({
+				// 	evalName: "hs-scancode", //扫码回调监听事件
+				// 	msg: "扫码啦", //提示文本
+				// 	fil: '0,1,2' //条码类型
+				// }, res => {
+				// 	//扫码成功后 这里自己判断，如果要自己处理结果就返回 true
+					
+				// 	return false
+				// })
+				
+			},
+			closeClick(mode){  //关闭详情
+				console.log("关闭详情")
+				this.judgeipt = false;
+				this.modeClasss = ['slide-bottom'];
+				this.transShows = !this.transShows;
+			},
+			NavigationClick(){  //导航
+				console.log("导航")
+				var _this = this;
+				uni.openLocation({
+					width: '100%',
+					latitude: Number(_this.OBJ.latitude),
+					longitude: Number(_this.OBJ.longitude),
+					name: _this.OBJ.name,
+					address: _this.OBJ.dizhi,
+					success: function() {
+						console.log('success');
+					}
+				});
+				
+				
+			},
+			mineClick(e,mode){  //我的
+				if(e == 1){  //修改资料
+					uni.navigateTo({
+						url:"../mine/PersonalSettings"
+					})
+				}else if(e == 2){ //修改信息
+					uni.navigateTo({
+						url:"../mine/PersonalSettings"
+					})
+				}else if(e == 3){ //修改手机号
+					uni.navigateTo({
+						url:"../mine/modifyPhone"
+					})
+				}else if(e == 4){ //信息中心
+					uni.navigateTo({
+						url:"../mine/news"
+					})
+				}else if(e == 5){  //我的关注
+					uni.navigateTo({
+						url:"../mine/follow"
+					})
+				}else if(e == 6){  //联系客服
+					this.UNIEvolution.uniPhoneCall("18739072102")
+				}else if(e == 7){  //退出登录
+					uni.redirectTo({
+						url:"../Logon/Logon"
+					})
+				}else if(e == 0){  //关闭弹框
+					this.show = !this.show
+					this.modeClass = mode
+					this.transShow = !this.transShow
+				}else if(e == 8){
+					console.log("111")
+					uni.navigateTo({
+						url:"../Logon/lang"
+					})
+				}
+				
+				
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped>
+	.index_1{
+		width: 100%;
+		height: 296upx;
+		background-color: #f7dd4c;
+		// border-radius: 20upx 20upx 0 0;
+		position: fixed;
+		bottom:98upx;
+	}
+	.Discount_1 {
+		
+		width:750upx;
+		height:130upx;
+		background-color: #f7dd4c;
+		position: fixed;
+		top: 0;
+		z-index:999;
+	}
+	
+	.Discount_1_1{
+		width:750upx;
+		height:90upx;
+		// background-color: #C0C0C0;
+		position: relative;
+		
+	}
+	.Discount_1_1_1{
+		width:120upx;
+		height: 90upx;
+		// background-color: #3F536E;
+		position: absolute;
+		top: 0;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.Discount_1_1_1_1{
+		width: 60upx;
+		height: 60upx;
+		background-color: #00b650;
+		border-radius:30upx;
+		// border: 3upx solid #40c255;
+		justify-content: center; 
+	}
+	.Discount_1_1_1_1_1{
+		width: 60upx;
+		height: 60upx;
+		border-radius: 30px;
+	}
+	.Discount_1_1_2{
+		width:750upx;
+		height: 90upx;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		// flex-direction: column;
+		// background-color: #3F536E;
+		
+		
+	}
+	.Discount_1_1_2_1{
+		width: 102upx;
+		height: 57upx;
+		background-color: #DD524D;
+		border-radius: 28upx;
+		
+	}
+	
+	.Discount_1_1_2_1_img{
+		border-radius: 28upx;
+		width: 102upx;
+		height: 57upx;
+	}
+
+	// 扫码
+	
+	.Detailss_1{
+		width:750upx;
+		height: 275upx;
+		background-color: #f7dd4c;
+		// border-radius: 20upx 20upx 0 0;
+		border-top-left-radius: 30rpx;
+		border-top-right-radius: 30rpx;
+		position: fixed;
+		bottom:0upx;
+		z-index:999;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.Detailss_1_2{
+		line-height: 80upx;
+		height: 80upx;
+		justify-content: center;
+		// font-size:26upx;
+		align-items: center; 
+		/* background-color: #007AFF; */
+	}
+	.Detailss_1_2_1{
+		font-size:28upx;
+	}
+
+	// 详情弹框
+	.Detailss_2{
+		width:750upx;
+		height: 296upx;
+		background-color: #f7dd4c;
+		// border-radius: 20upx 20upx 0 0;
+		border-top-left-radius: 30rpx;
+		border-top-right-radius: 30rpx;
+		position: fixed;
+		bottom:0upx;
+		/* z-index:9999999;
+		flex-direction: column; */
+	}
+	
+	.Detailss_2_1{
+		width:750rpx;
+		height: 78upx;
+		// background-color: #007AFF;
+		flex-direction: row;
+		justify-content:flex-end;
+	}
+	.Detailss_2_1_1{
+		width: 78upx;
+		height: 78upx;
+		// background-color: #40C255;
+	}
+	
+	.Detailss_2_2{
+		width:750upx;
+		// background-color: #40C255;
+	}
+	.Detailss_2_2_1{
+		width: 750upx;
+		height: 60upx;
+		// background-color: #F0AD4E;
+		flex-direction: row;
+		justify-content:space-between;
+	}
+	.Detailss_2_2_1_2{
+		width:450upx;
+		// background-color: #007AFF;
+		flex-direction:row;
+		justify-content:flex-start;
+		align-items: center;
+	}
+	.Detailss_2_2_1_2_1{
+		font-size: 32rpx;
+		font-weight: 600;
+	}
+	.Detailss_2_2_1_1{
+		width:300upx;
+		height: 60upx;
+		// border-radius: 25upx;
+		// background-color: #FBEB94;
+		color: #FFFFFF;
+		line-height: 50upx;
+		text-align: center;
+		
+	}
+	.Detailss_2_2_1_1_1{
+		width:130upx;
+		height: 50upx;
+		border-radius: 25upx;
+		background-color: #18415d;
+		color: #FFFFFF;
+		flex-direction:row;
+		justify-content:center;
+		align-items: center;
+	}
+	.Detailss_2_2_1_1_1_1{
+		color: #FFFFFF;
+		font-size: 26upx;
+	}
+	.Detailss_2_2_2{
+		width:690upx;
+		height:100upx;
+		// background-color: #DD524D;
+		flex-direction: row;
+		// justify-content: center;
+		// align-items: center;
+	}
+	.Detailss_2_2_2_1{
+		width:50upx;
+		height: 50upx;
+		// background-color: #007AFF;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.Detailss_2_2_2_2{
+		width:640upx;
+		height: 100upx;
+		// background-color: #C0C0C0;
+	}
+	.Detailss_2_2_2_2_1{
+		width: 640upx;
+		line-height: 40upx;
+		font-size: 26upx;
+	}
+	
+	.Detailss_3{
+		width:750upx;
+		height: 92upx;
+		// background-color: #007AFF;
+		position: fixed;
+		bottom:350upx;
+		flex-direction:row;
+		justify-content: center;
+	}
+	.Detailss_3_1{
+		width: 92upx;
+		height: 92upx;
+		// background-color: #FFFFFF;
+		border-radius: 15upx;
+		margin-right: 32upx;
+	}
+	
+	// 我的
+	
+	
+	.mine_1{
+		width:600upx;
+		height:1500upx;
+		background-color: #f7dd4c;
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index:9999999;
+	}
+	.mine_1_1{
+		width:600upx;
+		/* height: 264upx; */
+		/* background-color: #4CD964; */
+		
+	}
+	.mine_1_1_1{
+		width:550upx;
+		height: 204upx;
+		// background-color: #FBEB94;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.mine_1_1_1_1{
+		width:200upx;
+		height: 204upx;
+		// background-color: #C0C0C0;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.mine_1_1_1_2{
+		width:350upx;
+		height: 204upx;
+		// background-color: #3F536E;
+		
+	}
+	.mine_1_1_1_1_1{
+		width: 120upx;
+		height: 120upx;
+		// background-color: #007AFF;
+		border-radius:60upx;
+		// border: 4upx solid #00bc43;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.mine_1_1_1_1_1_1{
+		width: 120upx;
+		height: 120upx;
+		border-radius: 60upx;
+	}
+	.mine_1_1_1_1_1_1_10{
+		width: 120upx;
+		height: 120upx;
+		border-radius: 60upx;
+	}
+	.mine_1_1_1_2_1{
+		width:350upx;
+		height: 80upx;
+		// background-color: #C0C0C0;
+		flex-direction:row;
+		justify-content: flex-start;
+		align-items: center;
+		
+	}
+	.mine_1_1_1_2_1_1{
+		font-size: 32upx;
+		font-weight: 600; 
+	}
+	.mine_1_1_1_2_2{
+		width:350upx;
+		height: 40upx;
+		/* background-color: #4CD964; */
+		flex-direction:row;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	.mine_1_1_1_2_2_1{
+		font-size: 26upx;
+		
+	}
+	
+	.mine_1_1_2{
+		width:600upx;
+		height: 90upx;
+		flex-direction:row;
+		align-items: center;
+		justify-content: flex-start;
+		// background-color: #F0AD4E;
+		margin-top: 10upx;
+	}
+	.mine_1_1_2_2{
+		font-size: 24upx;
+	}
+	.mine_1_1_2_2_1{
+		font-size: 30upx;
+	}
+	
+	.mine_2{
+		width: 600upx;
+		height: 76upx;
+		/* background-color: #007AFF; */
+	}
+	.mine_2_1{
+		width:490upx;
+		height: 76upx;
+		background-color: #fbeb94;
+		border-radius: 38upx;
+		color: #FFFFFF;
+		text-align: center;
+		line-height: 76upx;
+	}
+	.mine_2_1_1{
+		font-size: 28upx;
+		color: #FFFFFF;
+	}
+	
+	
+	.cccc{
+		width: 100%;
+		height: 500upx;
+		background-color: #007AFF;
+		flex-direction:row;
+	}
+	
+	.cccc_1{
+		width: 20%;
+		height: 500upx;
+		background-color: #DD524D;
+	}
+	.cccc_2{
+		width: 80%;
+		height: 500upx;
+		background-color: #C0C0C0;
+	}
+	
+	
+</style>

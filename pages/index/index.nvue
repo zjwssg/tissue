@@ -34,7 +34,7 @@
 		<!-- google地图原生ios插件 -->
 		<!-- <dc-testmap ref="mycomponent" :style="{width: '750rpx', height: mapHeight + 'rpx'}" @mapLoaded="onMapLoaded"></dc-testmap> -->
 		<div>
-			<mygooglemap ref="googlemaps" style="{width: '750rpx', height: mapHeight + 'rpx'}" @onMapLoaded="onMapLoaded"></mygooglemap>
+			<mygooglemap ref="googlemaps" :style="{width: '750rpx', height: mapHeight + 'rpx'}" @onMapLoaded="onMapLoaded"></mygooglemap>
 		</div>
 		
 		
@@ -289,7 +289,7 @@
 			
 		},
 		onLoad(){
-			console.log('App Launch');
+			/* console.log('App Launch');
 			//app启动时打开启动广告页
 			var w = plus.webview.open(
 				'../../hybrid/html/advertise/advertise.html',
@@ -297,7 +297,7 @@
 				{ top: 0, bottom: 0, zindex: 999 },
 				'fade-in',
 				500
-			); 
+			); */
 			//设置定时器，4s后关闭启动广告页
 			// setTimeout(function() {
 			// 	plus.webview.close(w);
@@ -312,9 +312,9 @@
 		    });
 		},
 		onReady() {  //必须使用onReady传入markers
-			// var _this = this;
+			//var _this = this;
 			// this.$refs.mycomponent.focus({"markers":_this.markers})
-			//this.$refs.googlemaps.focus("esfsfasdf");
+			
 		},
 		onShow() {
 			
@@ -350,6 +350,10 @@
 				this.select = 4;
 			}
 			//this.$refs.googlemaps.focus({"markers":_this.markers});
+			
+			
+			//this.$refs.googlemaps.focus("asdasfas"); 
+
 		},
 		computed: {
 			

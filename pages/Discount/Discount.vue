@@ -25,7 +25,7 @@
 					<view class="Discount_3_1_1"  v-for="(item,index) in user">
 						
 						<view @tap="DiscountBtn(2,item.id,item.u_account)">
-							<view class="Discount_3_1_1_1 widths"><image class="img100" :src="`http://www.zhijin.com/static/img/${item.u_m_logo}`" mode=""></image></view>
+							<view class="Discount_3_1_1_1 widths"><image class="img100" :src="`http://47.98.243.156:8090/static/img/${item.u_m_logo}`" mode=""></image></view>
 							<view class="Discount_3_1_1_2 widths Size26 fontWeight600 displayFlex_center">{{item.u_m_name}}</view>
 						</view>
 
@@ -82,10 +82,10 @@
 				
 					
 				};
-				console.log(url, params)
+				//console.log(url, params)
 				this.Http.Post(url, params,token)
 				.then(data => {
-					console.log(data.data)
+					//console.log(data.data)
 					this.user=data.data
 				})
 				
@@ -102,7 +102,7 @@
 				console.log(e.detail);
 			},
 			DiscountBtn(index,shop_id,account){
-				console.log('shop_id'+shop_id)
+				//console.log('shop_id'+shop_id)
 				if(index == 1){  //搜索
 					uni.navigateTo({
 						url:'./search'
@@ -115,7 +115,7 @@
 				}
 			},
 			headPortraitBtn(mode){//点击头像
-				console.log("点击1")
+				//console.log("点击1")
 				this.show = !this.show
 				this.modeClass = mode
 				this.transShow = !this.transShow

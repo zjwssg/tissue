@@ -6,7 +6,7 @@
 			<view class="DiscountDetails_1_0_0"></view>
 			<view class="DiscountDetails_1_0 displayFlex_center">
 				<view class="">
-					<image class="img100" :src="`http://www.zhijin.com/static/img/${datainfo.u_m_logo}`" mode=""></image>
+					<image class="img100" :src="`http://47.98.243.156:8090/static/img/${datainfo.u_m_logo}`" mode=""></image>
 				</view>
 			</view>
 		</view>
@@ -114,10 +114,11 @@
 				ISDiscount:false,
 			}
 		},
-		onLoad() {
+		onLoad:function(option) {
 			//传过来的店铺id
-	       let id = this.$route.query.id;
-		   let account =this.$route.query.account;
+			let id = option.id;
+			//console.log(id);
+			let account = option.account;
 		    this.getinfo(id);//获取店铺列表
 			this.getcouponinfo(id,account);//获取店铺列表
 		},
@@ -140,45 +141,52 @@
 					params = {
 							id:id,
 					};
-					console.log(url, params)
-					this.Http.Post(url, params,token)
+					//console.log(url, params)
+					this.Http.Post(url, params)
 					.then(data => {
-							console.log(data.data)
+							//console.log(data.data)
 							this.datainfo=data.data
 							this.account=this.datainfo.u_account
 					})
 			 
 			},
+			//优惠券
 			getcouponinfo(shop_id,account){
 					const token = uni.getStorageSync('token');
+					const user_id = uni.getStorageSync("user_id");
 					let url = '/api/coupon/get_coupon_list',
 					params = {
 						
 							c_with_sn:account,
 							shop_id:shop_id,
-							user_id:sessionStorage.getItem("user_id"),
+							user_id:user_id
 					};
-					console.log(url, params)
-					this.Http.Post(url, params,token)
+					//console.log(account);
+					//console.log(shop_id);
+					this.Http.Post(url, params)
 					.then(data => {
-							console.log(data.data)
+							//console.log(data.data)
 							this.datacouponinfo=data.data
 					})
+					
 			 
 			},
 			DiscountDetailsBtn(index,c_id,shop_id){
 				if(index == 1){ //点击领取优惠券
-					const token = uni.getStorageSync('token');
+					// token = uni.getStorageSync('token');
+					const user_id = uni.getStorageSync("user_id");
+					//console.log(user_id);
 					let url = '/api/coupon/receive_coupon',
+					
 					params = {
 							c_id:c_id,
 							shop_id:shop_id,
-							user_id:sessionStorage.getItem("user_id"),
+							user_id:user_id,
 					};
-					console.log(url, params)
-					this.Http.Post(url, params,token)
+					//console.log(url, params)
+					this.Http.Post(url, params)
 					.then(data => {
-						
+						//console.log(data);
 						if(data.code == 200){
 							this.endtime=data.data
 				             this.ISDiscount = true

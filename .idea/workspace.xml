@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6cd7368f-b4cb-4b53-9854-e33c17056c9a" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1nSQzs379xQiQSbh45EI802rPkm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mouse" />
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6cd7368f-b4cb-4b53-9854-e33c17056c9a" name="Default Changelist" comment="" />
+      <created>1611299792524</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1611299792524</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="793" y="291" key="FileChooserDialogImpl" timestamp="1611382743541">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="793" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1611382743541" />
+    <state x="514" y="182" key="SettingsEditor" timestamp="1611382781963">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="514" y="182" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1611382781963" />
+  </component>
+</project>

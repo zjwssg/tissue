@@ -155,9 +155,10 @@
 						.then(data => {
 							console.log(data.code)
 							if(data.code == 200){
-							
-								sessionStorage.setItem('token',data.data.token);
-								sessionStorage.setItem("user_id",data.data.user_id);
+								uni.setStorageSync('token',data.data.token);
+								uni.setStorageSync('user_id',data.data.user_id);
+								// sessionStorage.setItem('token',data.data.token);
+								// sessionStorage.setItem("user_id",data.data.user_id);
 	                            this.UNIEvolution.uniShowToast("登陆成功");
 								uni.switchTab({
 									url:"../index/index" 
@@ -177,15 +178,29 @@
 						return false
 					};
 					this.UNIEvolution.uniShowLoading()
-					const token = uni.getStorageSync('token');
-					let url = 'api/client/getverificationcode',
-						params = {
+					//const token = uni.getStorageSync('token');
+					//url = 'api/client/getverificationcode',
+					let params = {
 							user_phone:this.inputUserName,
 							type:0,
 						};
-					console.log(url, params)
-					this.Http.Post(url, params,token)
-						.then(data => {
+					console.log(params)
+					
+					uni.request({
+						url:"http://127.0.0.1:8080/api/client/getverificationcode",
+						data:params,					
+						method: 'POST',
+						dataType:'json',
+						success(msg) {		
+							console.log(msg);
+							/* if(msg.data.errorCode == 0){
+								uni.navigateTo({
+									url: '../index/Successful'
+								});
+							} */
+						},	
+					});
+						/* .then(data => {
 							console.log(data.code)
 							if(data.code == 200){
 								this.UNIEvolution.uniShowToast("验证码获取成功");
@@ -196,7 +211,7 @@
 								this.UNIEvolution.uniShowToast(data.msg);
 								this.UNIEvolution.uniHideLoading();
 							}
-						})
+						}) */
 				}
 			},
 			langBtn(){  //语言切换

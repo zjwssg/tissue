@@ -1,0 +1,24 @@
+{
+	"name": "mygooglemap",
+	"id": "mygooglemap",
+	"version": "1.0.0",
+	"description": "google地图",
+	"_dp_type": "nativeplugin",
+	"_dp_nativeplugin": {
+		"android": {
+			"plugins": [{
+				"type": "component",
+				"name": "mygooglemap",
+				"class": "com.pywl.googlemap.GoogleMapComponent"
+			}],
+			"integrateType": "aar",
+			"dependencies": [
+				"com.google.android.gms:play-services-maps:17.0.0",
+				"com.google.android.gms:play-services-location:17.1.0"
+			],
+			"minSdkVersion": "16",
+			"useAndroidX": true
+		}
+
+	}
+}

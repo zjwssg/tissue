@@ -29,7 +29,7 @@
 					<!-- 	<view class="Discount_3_1_1_1 widths"><image class="img100" src="../../static/6f25700c29258a9f.jpg" mode=""></image></view>
 						<view class="Discount_3_1_1_2 widths Size26 fontWeight600 displayFlex_center">{{i18n.Discount.shopName}}</view> -->
 						
-						<view class="Discount_3_1_1_1 widths"><image class="img100" :src="`http://www.zhijin.com/static/img/${item.u_m_logo}`" mode=""></image></view>
+						<view class="Discount_3_1_1_1 widths"><image class="img100" :src="`http://47.98.243.156:8090/static/img/${item.u_m_logo}`" mode=""></image></view>
 						<view class="Discount_3_1_1_2 widths Size26 fontWeight600 displayFlex_center">{{item.u_m_name}}</view>
 					</view>
 					
