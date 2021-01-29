@@ -64,51 +64,51 @@
 			 
 			},
 			getinfo(){
-							// console.log(11111111);
-									const token = uni.getStorageSync('token');
-							let url = '/api/client/get_info',
-								params = {
-									user_id:sessionStorage.getItem("user_id"),
-									
-								};
-							console.log(url, params)
-							this.Http.Post(url, params,token)
-								.then(data => {
-									console.log(data.data),
-									this.user=data.data
-								})
-								},
-								DiscountDetailsBtn(index,c_id,shop_id){
-									if(index == 1){ //点击关注
-										const token = uni.getStorageSync('token');
-										let url = '/api/coupon/receive_coupon',
-										params = {
-												c_id:c_id,
-												shop_id:shop_id,
-												user_id:sessionStorage.getItem("user_id"),
-										};
-										console.log(url, params)
-										this.Http.Post(url, params,token)
-										.then(data => {
-											
-											if(data.code == 200){
-												this.endtime=data.data
-									             this.ISDiscount = true
-											}else{
-												this.UNIEvolution.uniShowToast(data.msg);
-											
-											}
-											
-												
-											
-										})
-										//;
-									}else if(index == 2){
-										this.ISDiscount = false;
-									}else if(index == 3){
-										this.ISDiscount = false;
-									}
-								}
+				// console.log(11111111);
+				const token = uni.getStorageSync('token');
+				let url = '/api/client/get_info',
+					params = {
+						user_id:sessionStorage.getItem("user_id"),
+						
+					};
+				console.log(url, params)
+				this.Http.Post(url, params,token)
+					.then(data => {
+						console.log(data.data),
+						this.user=data.data
+					})
+			},
+			DiscountDetailsBtn(index,c_id,shop_id){
+				if(index == 1){ //点击关注
+					const token = uni.getStorageSync('token');
+					let url = '/api/coupon/receive_coupon',
+					params = {
+							c_id:c_id,
+							shop_id:shop_id,
+							user_id:sessionStorage.getItem("user_id"),
+					};
+					console.log(url, params)
+					this.Http.Post(url, params,token)
+					.then(data => {
+						
+						if(data.code == 200){
+							this.endtime=data.data
+							 this.ISDiscount = true
+						}else{
+							this.UNIEvolution.uniShowToast(data.msg);
+						
+						}
+						
+							
+						
+					})
+					//;
+				}else if(index == 2){
+					this.ISDiscount = false;
+				}else if(index == 3){
+					this.ISDiscount = false;
+				}
+			}
 		}
 	}
 </script>

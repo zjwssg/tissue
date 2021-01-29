@@ -127,6 +127,7 @@
     "h5" : {
         "title" : "tissue",
         "domain" : "http://47.98.243.156:8090/"
+		
     }
 }
 //"autoSdkPermissions" : false

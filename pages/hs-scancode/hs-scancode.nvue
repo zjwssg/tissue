@@ -175,11 +175,12 @@
 								method: 'GET',
 								dataType:'json',
 								success(msg) {		
-									console.log(msg);
+									//console.log(msg);
 									if(msg.data.errorCode == 0){
 										uni.navigateTo({
 										    url: '../index/Successful'
 										});
+										
 									}
 								},	
 							});

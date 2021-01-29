@@ -14,7 +14,7 @@
 								<view class="PersonalSettings_1_1_1_1_2 displayFlex_right">
 									
 									<view class="displayFlex_center borderRadius">
-										<image class="img100 borderRadius" v-model="XGuserIcon" :src="`http://www.zhijin.com/static/img/${user.user_icon}`" mode=""></image>
+										<image class="img100 borderRadius" v-model="XGuserIcon" :src="`http://47.98.243.156:8090/static/img/${user.user_icon}`" mode=""></image>
 									</view>
 									
 									
@@ -102,7 +102,7 @@
 		onLoad() {
 			this.Image = this.Http.apiIMG;  //图片展示
 			this.apiHost = this.Http.apiHost;  //图片上传
-			  this.getinfo();//需要触发的函数
+			this.getinfo();//需要触发的函数
 			console.log(this.apiHost)
 		},
 		onShow() {
@@ -120,14 +120,14 @@
 			
 		  getinfo(){
 				// console.log(11111111);
-						const token = uni.getStorageSync('token');
+				//const token = uni.getStorageSync('token');
 				let url = '/api/client/get_info',
 					params = {
-						user_id:sessionStorage.getItem("user_id"),
+						user_id:uni.getStorageSync('user_id'),
 						
 					};
 				console.log(url, params)
-				this.Http.Post(url, params,token)
+				this.Http.Post(url, params)
 					.then(data => {
 						console.log(data.data)
 						this.user=data.data
@@ -138,20 +138,20 @@
 
 			modifyBtn(){  //修改昵称
 			
-			console.log(this)
+				console.log(this)
 				if(this.XGusername == ""){
 					this.UNIEvolution.uniShowToast("请输入昵称")
 					return false
 				};
 				this.UNIEvolution.uniShowLoading()
-				const token = uni.getStorageSync('token');
+				//const token = uni.getStorageSync('token');
 				let url = '/api/client/update_user_nickname',
 					params = {
 						   user_nickname:this.XGusername,
-						    user_id:sessionStorage.getItem("user_id"),
+						   user_id:uni.getStorageSync('user_id'),
 					};
 				console.log(url, params)
-				this.Http.Post(url, params,token)
+				this.Http.Post(url, params)
 					.then(data => {
 						console.log(data)
 						if(data.code == 200){
@@ -171,36 +171,39 @@
 				this.changeUsername = false;
 			},
 
-AvatarUpload(){ //头像上传
-				const token = uni.getStorageSync('token');
+			AvatarUpload(){ //头像上传
+				//const token = uni.getStorageSync('token');
 				let that = this;
 				uni.chooseImage({
 					sourceType: ["camera", "album"],
 					sizeType: ['compressed'],
 					count: 1,
 					success: (res) => {
-						var filePaths = res.tempFilePaths[0];
-						var fileData = res.tempFiles[0];
-					
+						var filePaths = res.tempFilePaths;
+						var fileData = res.tempFiles;
+						const user_id = uni.getStorageSync('user_id');
+						console.log(filePaths[0]);
+						console.log(fileData[0]);
 						 uni.uploadFile({
-						        url:that.apiHost + "/api/upload/upload",    
-						        filePath:filePaths,
+						        url:"http://47.98.243.156:8090/api/upload/upload",    
+						        filePath:filePaths[0],
 						        name:'file',
 								formData:{
-										user_icon:fileData,
+										'user_icon':'test',
 								},
-								header: {"token":token},
+								header: {'content-Type': 'application/x-www-form-urlencoded'},
 								method:"POST",
 						        success: (res) =>{
+									console.log(res);
 									let url = '/api/upload/upload_img',
 										params = {
 											user_icon:res.data,
-										  user_id:sessionStorage.getItem("user_id"),
+											user_id:user_id,
 										};
 									console.log(url, params)
-									this.Http.Post(url, params,token)
+									this.Http.Post(url, params)
 										.then(data => {
-											// console.log(data)
+											console.log(data)
 											if(data.code == 200){
 											    this.user.user_nickname=this.XGuserIcon
 												this.UNIEvolution.uniShowToast("修改成功");
@@ -208,7 +211,7 @@ AvatarUpload(){ //头像上传
 											}else{
 												this.UNIEvolution.uniShowToast(data.msg);
 											}
-										})
+										}) 
 						        }
 						    })
 						

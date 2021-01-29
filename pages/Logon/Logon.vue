@@ -142,35 +142,55 @@
 						return false
 					};
 					this.UNIEvolution.uniShowLoading()
-					const token = uni.getStorageSync('token');
-					
-					console.log(token);
-					let url = 'api/client/login',
-						params = {
+					const code = uni.getStorageSync('code');
+					console.log(code);
+					if(this.inputVerificationCode !== code){
+						uni.showToast({
+							title: '验证码不正确',
+							image:'../../static/xx.png',
+							duration: 2000
+						});
+						return false
+					}
+					console.log(code);
+					uni.request({
+						url:"http://47.98.243.156:8090/api/client/login",
+						data:{
 							user_phone:this.inputUserName,
 							user_code:this.inputVerificationCode,
-						};
-					console.log(url, params)
-					this.Http.Post(url, params,token)
-						.then(data => {
-							console.log(data.code)
-							if(data.code == 200){
-								uni.setStorageSync('token',data.data.token);
-								uni.setStorageSync('user_id',data.data.user_id);
-								// sessionStorage.setItem('token',data.data.token);
-								// sessionStorage.setItem("user_id",data.data.user_id);
-	                            this.UNIEvolution.uniShowToast("登陆成功");
+							type:0,
+						},
+						header: {'content-Type': 'application/x-www-form-urlencoded'},
+						method: 'POST',
+						//header:"Content-type: application/x-www-form-urlencoded",
+						success(data) {
+							console.log(data);
+							console.log(data.data.data[0]['user_id']);
+						if(data.data.code == 200){
+								//this.UNIEvolution.uniShowToast("验证码获取成功");
+							    //this.UNIEvolution.uniShowToast(msg.data);
+								uni.showToast({
+									title: '登陆成功',
+									duration: 2000
+								});		
+								
+								uni.setStorageSync('user_id', data.data.data[0]['user_id']);
 								uni.switchTab({
 									url:"../index/index" 
 								})
-							}else{
-								this.UNIEvolution.uniShowToast(data.msg);
-								this.UNIEvolution.uniHideLoading();
-							}
-						})
-				
-			
-				
+								//console.log(uni.getStorageSync('code'));
+							}else if(data.data.code == 400){
+								uni.showToast({
+									title: '登陆失败',
+									image:'../../static/xx.png',
+									duration: 2000
+								});
+								
+							} 
+						},
+							
+					})
+
 				}else if(index==6){
 					//获取验证码
 					if(this.inputUserName == ""){
@@ -180,38 +200,46 @@
 					this.UNIEvolution.uniShowLoading()
 					//const token = uni.getStorageSync('token');
 					//url = 'api/client/getverificationcode',
-					let params = {
-							user_phone:this.inputUserName,
-							type:0,
-						};
-					console.log(params)
 					
 					uni.request({
-						url:"http://127.0.0.1:8080/api/client/getverificationcode",
-						data:params,					
+						url:"http://47.98.243.156:8090/api/client/getverificationcode",
+						data:{
+							user_phone:this.inputUserName,
+							type:0,
+						},
+						header: {'content-Type': 'application/x-www-form-urlencoded'},
 						method: 'POST',
-						dataType:'json',
+						//header:"Content-type: application/x-www-form-urlencoded",
 						success(msg) {		
-							console.log(msg);
+							console.log(msg.data.data);
+							if(msg.data.code == 200){
+								//this.UNIEvolution.uniShowToast("验证码获取成功");
+							    //this.UNIEvolution.uniShowToast(msg.data);
+								uni.showToast({
+									title: '验证码获取成功',
+									duration: 2000
+								});		
+								try {
+								    uni.setStorageSync('code', msg.data.data);
+								} catch (e) {
+								    // error
+								}
+								console.log(uni.getStorageSync('code'));
+							}else if(msg.data.code == 400){
+								uni.showToast({
+									title: '验证码获取失败',
+									image:'../../static/xx.png',
+									duration: 2000
+								});
+							}
 							/* if(msg.data.errorCode == 0){
 								uni.navigateTo({
 									url: '../index/Successful'
 								});
 							} */
-						},	
-					});
-						/* .then(data => {
-							console.log(data.code)
-							if(data.code == 200){
-								this.UNIEvolution.uniShowToast("验证码获取成功");
-								
-							    this.UNIEvolution.uniShowToast(data.data);
-						
-							}else{
-								this.UNIEvolution.uniShowToast(data.msg);
-								this.UNIEvolution.uniHideLoading();
-							}
-						}) */
+						},
+							
+					})
 				}
 			},
 			langBtn(){  //语言切换

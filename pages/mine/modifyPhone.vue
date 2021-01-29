@@ -48,7 +48,9 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+				inputUserName:"",
+				inputUserCode:""
 			}
 		},
 		onLoad() {
@@ -76,27 +78,47 @@
 								return false
 							};
 							this.UNIEvolution.uniShowLoading()
-							const token = uni.getStorageSync('token');
-							let url = 'api/client/getverificationcode',
-								params = {
+							const user_id = uni.getStorageSync('user_id');
+							uni.request({
+								url:"http://47.98.243.156:8090/api/client/getverificationcode",
+								data:{
 									user_phone:this.inputUserName,
-									type:1,
-								    user_id:sessionStorage.getItem("user_id"),
-								};
-							console.log(url, params)
-							this.Http.Post(url, params,token)
-								.then(data => {
-									console.log(data.code)
-									if(data.code == 200){
-										this.UNIEvolution.uniShowToast("验证码获取成功");
-										
-									    this.UNIEvolution.uniShowToast(data.data);
-								
-									}else{
-										this.UNIEvolution.uniShowToast(data.msg);
-										this.UNIEvolution.uniHideLoading();
+									type:0,
+									user_id:user_id,
+								},
+								header: {'content-Type': 'application/x-www-form-urlencoded'},
+								method: 'POST',
+								//header:"Content-type: application/x-www-form-urlencoded",
+								success(msg) {		
+									console.log(msg.data.data);
+									if(msg.data.code == 200){
+										//this.UNIEvolution.uniShowToast("验证码获取成功");
+									    //this.UNIEvolution.uniShowToast(msg.data);
+										uni.showToast({
+											title: '验证码获取成功',
+											duration: 2000
+										});		
+										try {
+										    uni.setStorageSync('code', msg.data.data);
+										} catch (e) {
+										    // error
+										}
+										console.log(uni.getStorageSync('code'));
+									}else if(msg.data.code == 400){
+										uni.showToast({
+											title: '验证码获取失败',
+											image:'../../static/xx.png',
+											duration: 2000
+										});
 									}
-								})
+									/* if(msg.data.errorCode == 0){
+										uni.navigateTo({
+											url: '../index/Successful'
+										});
+									} */
+								},
+									
+							})
 						
 					}else if(index==2){
 						
@@ -109,31 +131,62 @@
 								this.UNIEvolution.uniShowToast("请输入验证码")
 								return false
 							};
-							
+							const code = uni.getStorageSync('code');
+							if(this.inputUserCode !== code){
+								uni.showToast({
+									title: '验证码不正确',
+									image:'../../static/xx.png',
+									duration: 2000
+								});
+								return false
+							}
 							this.UNIEvolution.uniShowLoading()
-							const token = uni.getStorageSync('token');
-							let url = '/api/client/update_user_phone',
-								params = {
+							
+							const user_id = uni.getStorageSync('user_id');
+							uni.request({
+								url:"http://47.98.243.156:8090/api/client/update_user_phone",
+								data:{
 									user_phone:this.inputUserName,
 									user_code:this.inputUserCode,
-								    user_id:sessionStorage.getItem("user_id"),
-								};
-							console.log(url, params)
-							this.Http.Post(url, params,token)
-								.then(data => {
-									console.log(data.code)
-									if(data.code == 200){
-										this.UNIEvolution.uniShowToast("手机号成功");
+									user_id:user_id,
+								},
+								header: {'content-Type': 'application/x-www-form-urlencoded'},
+								method: 'POST',
+								//header:"Content-type: application/x-www-form-urlencoded",
+								success(msg) {		
+									console.log(msg);
+									if(msg.data.code == 200){
+										//this.UNIEvolution.uniShowToast("验证码获取成功");
+									    //this.UNIEvolution.uniShowToast(msg.data);
+										uni.switchTab({
+											url:"../index/index" 
+										});
+										uni.showToast({
+											title: '修改成功',
+											duration: 2000
+										});	
 										
-									    this.UNIEvolution.uniShowToast(data.data);
-								    
-								        this.$router.back(0);
-								   
-									}else{
-										this.UNIEvolution.uniShowToast(data.msg);
-										this.UNIEvolution.uniHideLoading();
+									}else if(msg.data.code == 400){
+										uni.showToast({
+											title: '修改失败',
+											image:'../../static/xx.png',
+											duration: 2000
+										});
+									}else if(msg.data.code == 401){
+										uni.showToast({
+											title: '该手机号已存在',
+											image:'../../static/xx.png',
+											duration: 2000
+										});
 									}
-								})
+									/* if(msg.data.errorCode == 0){
+										uni.navigateTo({
+											url: '../index/Successful'
+										});
+									} */
+								},
+									
+							})
 						
 					}
 					}
