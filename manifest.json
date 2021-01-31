@@ -126,8 +126,11 @@
     },
     "h5" : {
         "title" : "tissue",
-        "domain" : "http://47.98.243.156:8090/"
-		
+        "domain" : "http://47.98.243.156:8090/",
+        "router" : {
+            "base" : "./",
+            "mode" : "hash"
+        }
     }
 }
 //"autoSdkPermissions" : false

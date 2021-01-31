@@ -52,11 +52,11 @@
 		},
 		methods: {
 			getshopinfo(){
-					const token = uni.getStorageSync('token');
+					//const token = uni.getStorageSync('token');
 					let url = '/api/user/get_shop_list',
 					params = {};
 					console.log(url, params)
-					this.Http.Post(url, params,token)
+					this.Http.Post(url, params)
 					.then(data => {
 							console.log(data.data)
 							this.datalist=data.data
@@ -65,14 +65,14 @@
 			},
 			getinfo(){
 				// console.log(11111111);
-				const token = uni.getStorageSync('token');
+				//const token = uni.getStorageSync('token');
 				let url = '/api/client/get_info',
 					params = {
-						user_id:sessionStorage.getItem("user_id"),
+						user_id:uni.getStorageSync("user_id"),
 						
 					};
 				console.log(url, params)
-				this.Http.Post(url, params,token)
+				this.Http.Post(url, params)
 					.then(data => {
 						console.log(data.data),
 						this.user=data.data

@@ -16,7 +16,8 @@
 				<view class="DiscountDetails_2_1_1 Size28 fontWeight600 displayFlex_left"><image style="width: 40upx;height: 40upx;" src="../../static/dp.png" mode=""></image>{{datainfo.u_m_name}}</view>
 				<view class="DiscountDetails_2_1_2 displayFlex_right">
 					<!-- 关注 -->
-					<view class="Size24 displayFlex_center">{{i18n.my.Follow}}</view>
+					<view class="Size24 displayFlex_center" v-if="states" @tap="statebtn(2)">{{i18n.my.Follow}}</view>
+					<view class="Size24 d2 displayFlex_center" v-if="state" @tap="statebtn(1)">{{i18n.my.Follow}}</view>
 				</view>
 			</view>
 			<!-- 店铺简介 -->
@@ -112,11 +113,14 @@
 				c_with_sn:'',
 				endtime:'',
 				ISDiscount:false,
+				state:true,
+				states:false,
 			}
 		},
 		onLoad:function(option) {
 			//传过来的店铺id
 			let id = option.id;
+			uni.setStorageSync('shops_id',id);
 			//console.log(id);
 			let account = option.account;
 		    this.getinfo(id);//获取店铺列表
@@ -170,6 +174,29 @@
 					})
 					
 			 
+			},
+			statebtn(index){
+				const shops_id = uni.getStorageSync('shops_id');
+				console.log(shops_id);
+				
+				if(index == 1){	
+					let url = '/api/user/get_shop_info',
+					params = {
+							id:id,
+					};
+					//console.log(url, params)
+					this.Http.Post(url, params)
+					.then(data => {
+							//console.log(data.data)
+							this.datainfo=data.data
+							this.account=this.datainfo.u_account
+					});
+					this.state = false
+					this.states = true
+				}else if(index == 2){
+					this.state = true
+					this.states = false
+				}
 			},
 			DiscountDetailsBtn(index,c_id,shop_id){
 				if(index == 1){ //点击领取优惠券
@@ -265,6 +292,13 @@
 					color: #FFFFFF;
 					margin-right: 30upx;
 				}
+				.d2{
+					width: 	130upx;
+					height: 45upx;
+					background: #f7dd4c !important;
+					color: #FFFFFF;
+					border-radius: 22upx;
+				}
 			}
 		}
 		.DiscountDetails_2_2{
@@ -358,6 +392,7 @@
 						color: #FFFFFF;
 						border-radius: 22upx;
 					}
+					
 				}
 			}
 		}

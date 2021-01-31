@@ -1,7 +1,7 @@
 <!-- PersonalSettings.vue  个人设置 -->
 <template>
 	<view class="page">
-		<view class="diandi15"></view><view class="diandi10"></view>
+		<!-- <view class="diandi15"></view><view class="diandi10"></view> -->
 		<view class="PersonalSettings_1">
 			<view class="Margin020">
 				<view class="PersonalSettings_1_1">
@@ -45,12 +45,12 @@
 			</view>
 		</view>
 		
-		<view class="diandi15"></view><view class="diandi10"></view>
+		<!-- <view class="diandi15"></view><view class="diandi10"></view> -->
 		
 		
 		
 		
-		<view class="diandi100"></view><view class="diandi100"></view>
+		<!-- <view class="diandi100"></view><view class="diandi100"></view> -->
 	
 		
 		
@@ -179,22 +179,26 @@
 					sizeType: ['compressed'],
 					count: 1,
 					success: (res) => {
+						uni.showLoading({
+							title: '上传图片',
+							mask: false
+						});
 						var filePaths = res.tempFilePaths;
 						var fileData = res.tempFiles;
 						const user_id = uni.getStorageSync('user_id');
-						console.log(filePaths[0]);
+						console.log(res.tempFilePaths.toString());
 						console.log(fileData[0]);
 						 uni.uploadFile({
 						        url:"http://47.98.243.156:8090/api/upload/upload",    
-						        filePath:filePaths[0],
+						        filePath:res.tempFilePaths.toString(),
 						        name:'file',
 								formData:{
-										'user_icon':'test',
+									'user_icon':'test',
 								},
 								header: {'content-Type': 'application/x-www-form-urlencoded'},
 								method:"POST",
 						        success: (res) =>{
-									console.log(res);
+									console.log(res.data);
 									let url = '/api/upload/upload_img',
 										params = {
 											user_icon:res.data,
@@ -208,6 +212,9 @@
 											    this.user.user_nickname=this.XGuserIcon
 												this.UNIEvolution.uniShowToast("修改成功");
 												// this.$store.dispatch('u_img',arrs.data.img);
+												uni.redirectTo({
+												    url: './PersonalSettings'
+												});
 											}else{
 												this.UNIEvolution.uniShowToast(data.msg);
 											}

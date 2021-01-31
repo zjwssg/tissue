@@ -81,6 +81,13 @@
 			// }
 		},
 		onLoad(p) {
+			/* const user_id = uni.getStorageSync('user_id');
+			console.log(user_id);
+			if(user_id == "" || user_id == 'undefined'){
+				uni.navigateTo({
+				    url: '../logon/logon'
+				});
+			}; */
 			//参数
 			if (p.evalName) this.evalName = p.evalName;
 			if (p.flash) this.flash = p.flash == 'true';
@@ -177,7 +184,7 @@
 								success(msg) {		
 									//console.log(msg);
 									if(msg.data.errorCode == 0){
-										uni.navigateTo({
+										uni.redirectTo({
 										    url: '../index/Successful'
 										});
 										

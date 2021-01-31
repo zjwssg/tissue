@@ -61,7 +61,7 @@
 		methods: {
 			DiscountDetailsBtn(index){
 				if(index == 1){
-					uni.navigateTo({
+					uni.redirectTo({
 					    url: './index'
 					})
 				}
