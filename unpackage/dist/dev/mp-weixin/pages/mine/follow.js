@@ -184,11 +184,11 @@ var _default =
 
   methods: {
     getshopinfo: function getshopinfo() {var _this = this;
-      var token = uni.getStorageSync('token');
+      //const token = uni.getStorageSync('token');
       var url = '/api/user/get_shop_list',
       params = {};
       console.log(url, params);
-      this.Http.Post(url, params, token).
+      this.Http.Post(url, params).
       then(function (data) {
         console.log(data.data);
         _this.datalist = data.data;
@@ -197,14 +197,14 @@ var _default =
     },
     getinfo: function getinfo() {var _this2 = this;
       // console.log(11111111);
-      var token = uni.getStorageSync('token');
+      //const token = uni.getStorageSync('token');
       var url = '/api/client/get_info',
       params = {
-        user_id: sessionStorage.getItem("user_id") };
+        user_id: uni.getStorageSync("user_id") };
 
 
       console.log(url, params);
-      this.Http.Post(url, params, token).
+      this.Http.Post(url, params).
       then(function (data) {
         console.log(data.data),
         _this2.user = data.data;

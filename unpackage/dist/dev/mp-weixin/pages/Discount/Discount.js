@@ -237,10 +237,10 @@ var _default =
 
 
 
-      console.log(url, params);
+      //console.log(url, params)
       this.Http.Post(url, params, token).
       then(function (data) {
-        console.log(data.data);
+        //console.log(data.data)
         _this.user = data.data;
       });
 
@@ -257,7 +257,7 @@ var _default =
       console.log(e.detail);
     },
     DiscountBtn: function DiscountBtn(index, shop_id, account) {
-      console.log('shop_id' + shop_id);
+      //console.log('shop_id'+shop_id)
       if (index == 1) {//搜索
         uni.navigateTo({
           url: './search' });
@@ -270,7 +270,7 @@ var _default =
       }
     },
     headPortraitBtn: function headPortraitBtn(mode) {//点击头像
-      console.log("点击1");
+      //console.log("点击1")
       this.show = !this.show;
       this.modeClass = mode;
       this.transShow = !this.transShow;

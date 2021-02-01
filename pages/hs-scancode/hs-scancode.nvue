@@ -167,7 +167,7 @@
 					method: 'POST',
 					dataType:'json',
 					success(res) {
-						//console.log(res)
+						console.log(res)
 						if(res.data.errorCode == 0){
 							let objs = {
 								"cmdId":res.data.data,
@@ -182,7 +182,7 @@
 								method: 'GET',
 								dataType:'json',
 								success(msg) {		
-									//console.log(msg);
+									console.log(msg);
 									if(msg.data.errorCode == 0){
 										uni.redirectTo({
 										    url: '../index/Successful'

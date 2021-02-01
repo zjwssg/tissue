@@ -5,9 +5,9 @@
 			 <div class="diandi40"></div>
 			<div class="Discount_1_1">
 				<div class="Discount_1_1_2">
-					<div class="Discount_1_1_2_1"><image class="img100 Discount_1_1_2_1_1" src="../static/logo.png" mode=""></image></div>
+					<div class="Discount_1_1_2_1"><image class="img100 Discount_1_1_2_1_1" :src="`http://47.98.243.156:8090/static/logo.png`" mode=""></image></div>
 				</div>
-				<div class="Discount_1_1_1"><div class="Discount_1_1_1_1" @tap="headPortraitBtn()"><image class="img100 borderRadius" src="../static/6f25700c29258a9f.jpg" mode=""></image></div></div>
+				<div class="Discount_1_1_1"><div class="Discount_1_1_1_1" @tap="headPortraitBtn()"><image class="img100 borderRadius" :src="`http://47.98.243.156:8090/static/img/${user.user_icon}`" mode=""></image></div></div>
 			</div>
 		</div>
 	</div>
@@ -17,13 +17,31 @@
 	export default {
 		data() {
 			return {
-				
+				user:[],
 			}
 		},
 		onLoad() {
-	
+			this.getlist();//获取用户信息
 		},
 		methods: {
+			getlist(){
+				const user_id = uni.getStorageSync('user_id');
+				uni.request({
+					url:"http://47.98.243.156:8090/api/client/getuserlist",
+					data:{
+						'user_id':user_id,
+					},					
+					method: 'POST',
+					dataType:'json',
+					header: {'content-Type': 'application/x-www-form-urlencoded'},
+					success:(msg) => {		
+						console.log(msg.data.data);
+						this.user = msg.data.data[0];
+						// console.log(user)
+					},
+					
+				})
+			},
 			headPortraitBtn(){
 				this.$emit('headPortraitBtn');
 			}

@@ -96,6 +96,7 @@
 				changeUsername:false,
 				XGusername:"",
 				XGuserIcon:"",
+				ifOnShow:false,
 			}
 		},
 
@@ -105,7 +106,17 @@
 			this.getinfo();//需要触发的函数
 			console.log(this.apiHost)
 		},
+		onUnload(){
+			console.log('this.ifOnShow=true')
+			this.ifOnShow=true
+			if (this.ifOnShow == true) {
+			  uni.reLaunch({
+				  url:'../index/index'
+			  });
+			} 
+		},
 		onShow() {
+			
 			// 导航栏多语言
 			uni.setNavigationBarTitle({
 			    title: this.i18n.my.PersonalSetting

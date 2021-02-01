@@ -227,7 +227,8 @@ var _default =
       apiHost: "",
       changeUsername: false,
       XGusername: "",
-      XGuserIcon: "" };
+      XGuserIcon: "",
+      ifOnShow: false };
 
   },
 
@@ -237,7 +238,17 @@ var _default =
     this.getinfo(); //需要触发的函数
     console.log(this.apiHost);
   },
+  onUnload: function onUnload() {
+    console.log('this.ifOnShow=true');
+    this.ifOnShow = true;
+    if (this.ifOnShow == true) {
+      uni.reLaunch({
+        url: '../index/index' });
+
+    }
+  },
   onShow: function onShow() {
+
     // 导航栏多语言
     uni.setNavigationBarTitle({
       title: this.i18n.my.PersonalSetting });
@@ -252,14 +263,14 @@ var _default =
 
     getinfo: function getinfo() {var _this = this;
       // console.log(11111111);
-      var token = uni.getStorageSync('token');
+      //const token = uni.getStorageSync('token');
       var url = '/api/client/get_info',
       params = {
-        user_id: sessionStorage.getItem("user_id") };
+        user_id: uni.getStorageSync('user_id') };
 
 
       console.log(url, params);
-      this.Http.Post(url, params, token).
+      this.Http.Post(url, params).
       then(function (data) {
         console.log(data.data);
         _this.user = data.data;
@@ -276,14 +287,14 @@ var _default =
         return false;
       };
       this.UNIEvolution.uniShowLoading();
-      var token = uni.getStorageSync('token');
+      //const token = uni.getStorageSync('token');
       var url = '/api/client/update_user_nickname',
       params = {
         user_nickname: this.XGusername,
-        user_id: sessionStorage.getItem("user_id") };
+        user_id: uni.getStorageSync('user_id') };
 
       console.log(url, params);
-      this.Http.Post(url, params, token).
+      this.Http.Post(url, params).
       then(function (data) {
         console.log(data);
         if (data.code == 200) {
@@ -304,39 +315,49 @@ var _default =
     },
 
     AvatarUpload: function AvatarUpload() {var _this3 = this; //头像上传
-      var token = uni.getStorageSync('token');
+      //const token = uni.getStorageSync('token');
       var that = this;
       uni.chooseImage({
         sourceType: ["camera", "album"],
         sizeType: ['compressed'],
         count: 1,
         success: function success(res) {
-          var filePaths = res.tempFilePaths[0];
-          var fileData = res.tempFiles[0];
+          uni.showLoading({
+            title: '上传图片',
+            mask: false });
 
+          var filePaths = res.tempFilePaths;
+          var fileData = res.tempFiles;
+          var user_id = uni.getStorageSync('user_id');
+          console.log(res.tempFilePaths.toString());
+          console.log(fileData[0]);
           uni.uploadFile({
-            url: that.apiHost + "/api/upload/upload",
-            filePath: filePaths,
+            url: "http://47.98.243.156:8090/api/upload/upload",
+            filePath: res.tempFilePaths.toString(),
             name: 'file',
             formData: {
-              user_icon: fileData },
+              'user_icon': 'test' },
 
-            header: { "token": token },
+            header: { 'content-Type': 'application/x-www-form-urlencoded' },
             method: "POST",
             success: function success(res) {
+              console.log(res.data);
               var url = '/api/upload/upload_img',
               params = {
                 user_icon: res.data,
-                user_id: sessionStorage.getItem("user_id") };
+                user_id: user_id };
 
               console.log(url, params);
-              _this3.Http.Post(url, params, token).
+              _this3.Http.Post(url, params).
               then(function (data) {
-                // console.log(data)
+                console.log(data);
                 if (data.code == 200) {
                   _this3.user.user_nickname = _this3.XGuserIcon;
                   _this3.UNIEvolution.uniShowToast("修改成功");
                   // this.$store.dispatch('u_img',arrs.data.img);
+                  uni.redirectTo({
+                    url: './PersonalSettings' });
+
                 } else {
                   _this3.UNIEvolution.uniShowToast(data.msg);
                 }

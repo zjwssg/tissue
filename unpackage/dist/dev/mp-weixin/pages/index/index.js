@@ -361,10 +361,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
+
+      select: "简体中文",
       show: false,
       transShow: false,
       modeClass: ['fade'],
@@ -443,22 +474,64 @@ var _default =
         name: "100号机器",
         dizhi: "100号机器的地址位置就是这里",
         latitude: 34.66642895,
-        longitude: 112.42676497 } };
+        longitude: 112.42676497 },
+
+      user: [] };
 
 
   },
   onLoad: function onLoad() {var _this2 = this;
+    this.getlist(); //获取用户信息
     uni.getSystemInfo({
       success: function success(res) {// 需要使用箭头函数，swiper 高度才能设置成功
         _this2.mapHeight = res.windowHeight * 2 - 110;
-        console.log(_this2.mapHeight);
+        //console.log( this.mapHeight);
         _this2.mineHeight = res.screenHeight * 2;
       } });
 
   },
   onReady: function onReady() {//必须使用onReady传入markers
-    var _this = this;
+    //var _this = this;
     // this.$refs.mycomponent.focus({"markers":_this.markers})
+
+  },
+  onShow: function onShow() {
+    //此处测试传值 瞎写的   传值的结构应该是：
+    /* {markers: [
+        {  //当前位置的
+     	iconPath: "../../static/zs.png",
+     	id: 100,
+     	latitude: 34.66642895,
+     	longitude: 112.42676497,
+     	width:40,
+     	height:40
+           },
+          { //商家端位置的
+     	iconPath: "../../static/duoweizhi.png",
+     	id:101,
+    	latitude: 34.66337572,
+     	longitude: 112.4195981,
+     	width:40,
+     	height:40
+           }
+    ]} */
+
+
+    var select = uni.getStorageSync("select");
+    if (select == "zh-CN") {//中文
+      this.select = 1;
+    } else if (select == "en-US") {//英文
+      this.select = 2;
+    } else if (select == "zh-HK") {//马来西亚文
+      this.select = 3;
+    } else if (select == "dr-M") {//淡米尔文
+      this.select = 4;
+    }
+    //this.$refs.googlemaps.focus({"markers":_this.markers});
+
+
+    //this.$refs.googlemaps.focus("asdasfas"); 
+
   },
   computed: {
 
@@ -467,64 +540,104 @@ var _default =
     // }
   },
   methods: {
+    getlist: function getlist() {var _this3 = this;
+      var user_id = uni.getStorageSync('user_id');
+      uni.request({
+        url: "http://47.98.243.156:8090/api/client/getuserlist",
+        data: {
+          'user_id': user_id },
+
+        method: 'POST',
+        dataType: 'json',
+        header: { 'content-Type': 'application/x-www-form-urlencoded' },
+        success: function success(msg) {
+          console.log(msg.data.data);
+          _this3.user = msg.data.data[0];
+          // console.log(user)
+        } });
+
+
+    },
+    onMapLoaded: function onMapLoaded(e) {
+      console.log("onMapLoaded=" + e); //此处是点击事件回调   取值是：e.detail.id
+    },
     dianji: function dianji() {//
       uni.switchTab({
         url: "../Discount/Discount" });
 
     },
-    onMapLoaded: function onMapLoaded(e) {
-      //e.detail.id 是标记点的id  拿到id做其他操作
-      if (e.detail.id == 100) {
-        this.OBJ = {
-          id: 100,
-          name: "100号机器",
-          dizhi: "100号机器的地址位置就是这里",
-          latitude: 34.66642895,
-          longitude: 112.42676497 };
-
-      } else if (e.detail.id == 101) {
-        this.OBJ = {
-          id: 101,
-          name: "101号机器",
-          dizhi: "101号机器的地址位置就是这里",
-          latitude: 34.66337572,
-          longitude: 112.4195981 };
-
-      } else if (e.detail.id == 102) {
-        this.OBJ = {
-          id: 102,
-          name: "102号机器",
-          dizhi: "102号机器的地址位置就是这里",
-          latitude: 34.66856439,
-          longitude: 112.43021965 };
-
-      } else if (e.detail.id == 103) {
-        this.OBJ = {
-          id: 103,
-          name: "103号机器",
-          dizhi: "103号机器的地址位置就是这里",
-          latitude: 34.66388754,
-          longitude: 112.42824554 };
-
-      } else if (e.detail.id == 104) {
-        this.OBJ = {
-          id: 104,
-          name: "104号机器",
-          dizhi: "104号机器的地址位置就是这里",
-          latitude: 34.65857502,
-          longitude: 112.43118525 };
-
-      }
-
-      this.judgeipt = true;
-      this.shows = !this.shows;
-      this.modeClasss = ['slide-bottom'];
-      this.transShows = !this.transShow;
-
-
-    },
+    /* onMapLoaded(e){
+       	//e.detail.id 是标记点的id  拿到id做其他操作
+       	if(e.detail.id == 100){
+       		this.OBJ = {
+       			id:100,
+       			name:"100号机器",
+       			dizhi:"100号机器的地址位置就是这里",
+       			latitude: 34.66642895,
+       			longitude: 112.42676497,
+       		}
+       	}else if(e.detail.id == 101){
+       		this.OBJ = {
+       			id:101,
+       			name:"101号机器",
+       			dizhi:"101号机器的地址位置就是这里",
+       			latitude: 34.66337572,
+       			longitude: 112.4195981,
+       		}
+       	}else if(e.detail.id == 102){
+       		this.OBJ = {
+       			id:102,
+       			name:"102号机器",
+       			dizhi:"102号机器的地址位置就是这里",
+       			latitude: 34.66856439,
+       			longitude: 112.43021965,
+       		}
+       	}else if(e.detail.id == 103){
+       		this.OBJ = {
+       			id:103,
+       			name:"103号机器",
+       			dizhi:"103号机器的地址位置就是这里",
+       			latitude: 34.66388754,
+       			longitude: 112.42824554,
+       		}
+       	}else if(e.detail.id == 104){
+       		this.OBJ = {
+       			id:104,
+       			name:"104号机器",
+       			dizhi:"104号机器的地址位置就是这里",
+       			latitude: 34.65857502,
+       			longitude: 112.43118525,
+       		}
+       	}
+       	
+       	this.judgeipt = true;
+       	this.shows = !this.shows;
+       	this.modeClasss = ['slide-bottom'];
+       	this.transShows = !this.transShow;
+       	
+       	
+       }, */
 
     scan: function scan() {
+      /* let obj = {
+                           	"cmd": 1000,
+                           	"data": {digital: 1,msg: "run" }, 
+                           	"sn": "ookkma", 
+                           	"nonceStr": "135",
+                           }
+                           uni.request({
+                           	url:"http://47.98.243.156:8090/api/equipment/directive_issue",
+                           	data:{
+                           		"data" :JSON.stringify(obj)
+                           	},
+                           	method: 'POST',
+                           	dataType:'json',
+                           	header: {'content-type': 'application/x-www-form-urlencoded'},
+                           	
+                           	success: res => {
+                           		console.log(res);
+                           	},
+                           }); */
       //开始扫码
       this.toHsScanCode({
         evalName: "hs-scancode", //扫码回调监听事件
@@ -551,7 +664,7 @@ var _default =
 
         } else {
           //if (error.errMsg === "scanCode:fail cancel") toast("扫码取消")
-          // else  toast("扫码出错")
+          //else  toast("扫码出错")
         }
       });
       uni.navigateTo({

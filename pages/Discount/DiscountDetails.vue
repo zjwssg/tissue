@@ -14,10 +14,11 @@
 			<view class="diandi30"></view>
 			<view class="DiscountDetails_2_1 widths displayFlex_fen">
 				<view class="DiscountDetails_2_1_1 Size28 fontWeight600 displayFlex_left"><image style="width: 40upx;height: 40upx;" src="../../static/dp.png" mode=""></image>{{datainfo.u_m_name}}</view>
-				<view class="DiscountDetails_2_1_2 displayFlex_right">
-					<!-- 关注 -->
-					<view class="Size24 displayFlex_center" v-if="states" @tap="statebtn(2)">{{i18n.my.Follow}}</view>
-					<view class="Size24 d2 displayFlex_center" v-if="state" @tap="statebtn(1)">{{i18n.my.Follow}}</view>
+				<!-- <view class="Size24 displayFlex_center">{{i18n.my.Follow}}</view> -->
+				<view class="DiscountDetails_2_1_2 displayFlex_right" v-for="(item,index) in gz">
+					<!-- 关注 -->	
+					<view class="Size24 displayFlex_center" v-if="item.states == 1" @tap="statebtn(2)">{{i18n.my.Following}}</view>
+					<view class="Size24 d2 displayFlex_center" v-if="item.states == 0" @tap="statebtn(1)">{{i18n.my.Follow}}</view>
 				</view>
 			</view>
 			<!-- 店铺简介 -->
@@ -113,8 +114,8 @@
 				c_with_sn:'',
 				endtime:'',
 				ISDiscount:false,
-				state:true,
 				states:false,
+				gz:[],
 			}
 		},
 		onLoad:function(option) {
@@ -123,8 +124,10 @@
 			uni.setStorageSync('shops_id',id);
 			//console.log(id);
 			let account = option.account;
+			uni.setStorageSync('account',account);
 		    this.getinfo(id);//获取店铺列表
 			this.getcouponinfo(id,account);//获取店铺列表
+			this.attention(id);//获取关注信息
 		},
 		onShow() {
 			// 导航栏多语言
@@ -140,10 +143,10 @@
 		methods: {
 			
 			getinfo(id){
-					const token = uni.getStorageSync('token');
+					const shop_id = uni.getStorageSync('shops_id');
 					let url = '/api/user/get_shop_info',
 					params = {
-							id:id,
+							id:shop_id,
 					};
 					//console.log(url, params)
 					this.Http.Post(url, params)
@@ -154,9 +157,26 @@
 					})
 			 
 			},
+			attention(id){
+				const user_id = uni.getStorageSync("user_id");
+				const shops_id = uni.getStorageSync('shops_id');
+				let url = '/api/user/get_shop_is_attention',
+				params = {
+					shop_id:shops_id,
+					user_id:user_id,
+				};
+				
+				//console.log(url, params)
+				this.Http.Post(url, params)
+				.then(data => {
+					console.log(data)
+					this.gz=data.data
+				});
+			 
+			},
 			//优惠券
 			getcouponinfo(shop_id,account){
-					const token = uni.getStorageSync('token');
+					//const token = uni.getStorageSync('token');
 					const user_id = uni.getStorageSync("user_id");
 					let url = '/api/coupon/get_coupon_list',
 					params = {
@@ -177,30 +197,60 @@
 			},
 			statebtn(index){
 				const shops_id = uni.getStorageSync('shops_id');
+				const user_id = uni.getStorageSync('user_id');
+				const account = uni.getStorageSync('account');
 				console.log(shops_id);
-				
+				console.log(user_id);
 				if(index == 1){	
-					let url = '/api/user/get_shop_info',
+					let url = '/api/user/get_shop_attention',
 					params = {
-							id:id,
+						shop_id:shops_id,
+						user_id:user_id,
 					};
+					this.UNIEvolution.uniShowLoading()
 					//console.log(url, params)
 					this.Http.Post(url, params)
 					.then(data => {
-							//console.log(data.data)
-							this.datainfo=data.data
-							this.account=this.datainfo.u_account
+						console.log(data)
+						if(data.code == 200){
+							uni.showToast({
+								title: '关注成功',
+								duration: 1000
+							});
+							uni.redirectTo({
+							    url: './DiscountDetails?id='+shops_id+'&&account='+account
+							});
+						}
 					});
-					this.state = false
 					this.states = true
 				}else if(index == 2){
-					this.state = true
+					
+					let url = '/api/user/get_shop_attention',
+					params = {
+							shop_id:shops_id,
+							user_id:user_id,
+					};
+					this.UNIEvolution.uniShowLoading()
+					//console.log(url, params)
+					this.Http.Post(url, params)
+					.then(data => {
+						console.log(data)
+						if(data.code == 202){
+							uni.showToast({
+								title: '取消关注',
+								duration: 1000
+							});
+							uni.redirectTo({
+							    url: './DiscountDetails?id='+shops_id+'&&account='+account
+							});
+						}
+					});
 					this.states = false
 				}
 			},
 			DiscountDetailsBtn(index,c_id,shop_id){
 				if(index == 1){ //点击领取优惠券
-					// token = uni.getStorageSync('token');
+					
 					const user_id = uni.getStorageSync("user_id");
 					//console.log(user_id);
 					let url = '/api/coupon/receive_coupon',

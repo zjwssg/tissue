@@ -314,7 +314,7 @@ button {
   margin-right: 32rpx;
 }
 .mine_1.data-v-8ddf7c9c {
-  width: 550rpx;
+  width: 600rpx;
   height: 1500rpx;
   background-color: #f7dd4c;
   position: fixed;
@@ -323,7 +323,7 @@ button {
   z-index: 9999999;
 }
 .mine_1_1.data-v-8ddf7c9c {
-  width: 550rpx;
+  width: 600rpx;
   /* height: 264upx; */
   /* background-color: #4CD964; */
 }
@@ -421,7 +421,7 @@ button {
   font-size: 26rpx;
 }
 .mine_1_1_2.data-v-8ddf7c9c {
-  width: 550rpx;
+  width: 600rpx;
   height: 90rpx;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -442,7 +442,7 @@ button {
   font-size: 30rpx;
 }
 .mine_2.data-v-8ddf7c9c {
-  width: 550rpx;
+  width: 600rpx;
   height: 76rpx;
   /* background-color: #007AFF; */
 }

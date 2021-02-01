@@ -8,7 +8,7 @@
 			<div class="Discount_1_1">
 				<div class="Discount_1_1_2 displayFlex_center">
 					<div class="Discount_1_1_2_1">
-						<image class="img100 Discount_1_1_2_1_img" @tap="dianji()" :src="`../../static/logo.png`" mode=""></image>
+						<image class="img100 Discount_1_1_2_1_img" @tap="dianji()" :src="`http://47.98.243.156:8090/static/logo.png`" mode=""></image>
 					</div>
 				</div>
 				<div class="Discount_1_1_1 displayFlex_center"><div class="Discount_1_1_1_1" @tap="headPortraitBtn(['slide-left'])"><image class="img100 borderRadius Discount_1_1_1_1_1" :src="`http://47.98.243.156:8090/static/img/${user.user_icon}`" mode=""></image></div></div>
@@ -287,14 +287,8 @@
 					longitude: 112.42676497,
 				},
 				user:[],
-				ifOnShow:false,
 			}
 			
-		},
-		
-		onHide(){
-			console.log('this.ifOnShow=true')
-			this.ifOnShow=true
 		},
 		onLoad(){	
 			this.getlist();//获取用户信息
@@ -312,11 +306,6 @@
 			
 		},
 		onShow() {
-			if (this.ifOnShow == true) {
-			  uni.reLaunch({
-				  url:'./index'
-			  });
-			} 
 			//此处测试传值 瞎写的   传值的结构应该是：
 			/* {markers: [
 			    {  //当前位置的

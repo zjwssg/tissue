@@ -7,7 +7,7 @@
 				<view class="diandi60"></view>
 				
 				<view class="mine_1_1_1" @tap="mineClick(1)">
-					<view class="mine_1_1_1_1"><view class=""><image class="img100 borderRadius" src="../static/6f25700c29258a9f.jpg" mode=""></image></view></view>
+					<view class="mine_1_1_1_1"><view class=""><image class="img100 borderRadius" :src="`http://47.98.243.156:8090/static/logo.png`" mode=""></image></view></view>
 					<view class="mine_1_1_1_2">
 						<view class="diandi40"></view>
 						<view class="mine_1_1_1_2_1 Size32 fontWeight600">{{ user.user_nickname }}</view>

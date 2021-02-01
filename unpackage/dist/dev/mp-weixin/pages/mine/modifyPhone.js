@@ -180,7 +180,9 @@ var _default =
 {
   data: function data() {
     return {
-      title: 'Hello' };
+      title: 'Hello',
+      inputUserName: "",
+      inputUserCode: "" };
 
   },
   onLoad: function onLoad() {
@@ -198,7 +200,7 @@ var _default =
     } },
 
   methods: {
-    LogonBtn: function LogonBtn(index) {var _this = this;
+    LogonBtn: function LogonBtn(index) {
 
       console.log(this.inputUserName);
       if (index == 1) {
@@ -208,27 +210,47 @@ var _default =
           return false;
         };
         this.UNIEvolution.uniShowLoading();
-        var token = uni.getStorageSync('token');
-        var url = 'api/client/getverificationcode',
-        params = {
-          user_phone: this.inputUserName,
-          type: 1,
-          user_id: sessionStorage.getItem("user_id") };
+        var user_id = uni.getStorageSync('user_id');
+        uni.request({
+          url: "http://47.98.243.156:8090/api/client/getverificationcode",
+          data: {
+            user_phone: this.inputUserName,
+            type: 0,
+            user_id: user_id },
 
-        console.log(url, params);
-        this.Http.Post(url, params, token).
-        then(function (data) {
-          console.log(data.code);
-          if (data.code == 200) {
-            _this.UNIEvolution.uniShowToast("验证码获取成功");
+          header: { 'content-Type': 'application/x-www-form-urlencoded' },
+          method: 'POST',
+          //header:"Content-type: application/x-www-form-urlencoded",
+          success: function success(msg) {
+            console.log(msg.data.data);
+            if (msg.data.code == 200) {
+              //this.UNIEvolution.uniShowToast("验证码获取成功");
+              //this.UNIEvolution.uniShowToast(msg.data);
+              uni.showToast({
+                title: '验证码获取成功',
+                duration: 2000 });
 
-            _this.UNIEvolution.uniShowToast(data.data);
+              try {
+                uni.setStorageSync('code', msg.data.data);
+              } catch (e) {
+                // error
+              }
+              console.log(uni.getStorageSync('code'));
+            } else if (msg.data.code == 400) {
+              uni.showToast({
+                title: '验证码获取失败',
+                image: '../../static/xx.png',
+                duration: 2000 });
 
-          } else {
-            _this.UNIEvolution.uniShowToast(data.msg);
-            _this.UNIEvolution.uniHideLoading();
-          }
-        });
+            }
+            /* if(msg.data.errorCode == 0){
+              	uni.navigateTo({
+              		url: '../index/Successful'
+              	});
+              } */
+          } });
+
+
 
       } else if (index == 2) {
 
@@ -241,31 +263,62 @@ var _default =
           this.UNIEvolution.uniShowToast("请输入验证码");
           return false;
         };
+        var code = uni.getStorageSync('code');
+        if (this.inputUserCode !== code) {
+          uni.showToast({
+            title: '验证码不正确',
+            image: '../../static/xx.png',
+            duration: 2000 });
 
+          return false;
+        }
         this.UNIEvolution.uniShowLoading();
-        var _token = uni.getStorageSync('token');
-        var _url = '/api/client/update_user_phone',
-        _params = {
-          user_phone: this.inputUserName,
-          user_code: this.inputUserCode,
-          user_id: sessionStorage.getItem("user_id") };
 
-        console.log(_url, _params);
-        this.Http.Post(_url, _params, _token).
-        then(function (data) {
-          console.log(data.code);
-          if (data.code == 200) {
-            _this.UNIEvolution.uniShowToast("手机号成功");
+        var _user_id = uni.getStorageSync('user_id');
+        uni.request({
+          url: "http://47.98.243.156:8090/api/client/update_user_phone",
+          data: {
+            user_phone: this.inputUserName,
+            user_code: this.inputUserCode,
+            user_id: _user_id },
 
-            _this.UNIEvolution.uniShowToast(data.data);
+          header: { 'content-Type': 'application/x-www-form-urlencoded' },
+          method: 'POST',
+          //header:"Content-type: application/x-www-form-urlencoded",
+          success: function success(msg) {
+            console.log(msg);
+            if (msg.data.code == 200) {
+              //this.UNIEvolution.uniShowToast("验证码获取成功");
+              //this.UNIEvolution.uniShowToast(msg.data);
+              uni.switchTab({
+                url: "../index/index" });
 
-            _this.$router.back(0);
+              uni.showToast({
+                title: '修改成功',
+                duration: 2000 });
 
-          } else {
-            _this.UNIEvolution.uniShowToast(data.msg);
-            _this.UNIEvolution.uniHideLoading();
-          }
-        });
+
+            } else if (msg.data.code == 400) {
+              uni.showToast({
+                title: '修改失败',
+                image: '../../static/xx.png',
+                duration: 2000 });
+
+            } else if (msg.data.code == 401) {
+              uni.showToast({
+                title: '该手机号已存在',
+                image: '../../static/xx.png',
+                duration: 2000 });
+
+            }
+            /* if(msg.data.errorCode == 0){
+              	uni.navigateTo({
+              		url: '../index/Successful'
+              	});
+              } */
+          } });
+
+
 
       }
     } } };exports.default = _default;

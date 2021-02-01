@@ -8,7 +8,7 @@
 		<view class="Logon_1">
 			<view class="diandi40"></view>
 			<view class="Logon_1_1 displayFlex_center">
-				<view class="" @tap="langBtn()"><image class="img100" src="../../static/logo.png" mode=""></image></view>
+				<view class="" @tap="langBtn()"><image class="img100" :src="`http://47.98.243.156:8090/static/logo.png`" mode=""></image></view>
 			</view>
 		</view>
 		

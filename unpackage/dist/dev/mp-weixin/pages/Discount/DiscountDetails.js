@@ -234,6 +234,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 
 {
@@ -243,13 +244,17 @@ var _default =
       datacouponinfo: [],
       c_with_sn: '',
       endtime: '',
-      ISDiscount: false };
+      ISDiscount: false,
+      state: true,
+      states: false };
 
   },
-  onLoad: function onLoad() {
+  onLoad: function onLoad(option) {
     //传过来的店铺id
-    var id = this.$route.query.id;
-    var account = this.$route.query.account;
+    var id = option.id;
+    uni.setStorageSync('shops_id', id);
+    //console.log(id);
+    var account = option.account;
     this.getinfo(id); //获取店铺列表
     this.getcouponinfo(id, account); //获取店铺列表
   },
@@ -272,50 +277,80 @@ var _default =
       params = {
         id: id };
 
-      console.log(url, params);
-      this.Http.Post(url, params, token).
+      //console.log(url, params)
+      this.Http.Post(url, params).
       then(function (data) {
-        console.log(data.data);
+        //console.log(data.data)
         _this.datainfo = data.data;
         _this.account = _this.datainfo.u_account;
       });
 
     },
+    //优惠券
     getcouponinfo: function getcouponinfo(shop_id, account) {var _this2 = this;
       var token = uni.getStorageSync('token');
+      var user_id = uni.getStorageSync("user_id");
       var url = '/api/coupon/get_coupon_list',
       params = {
 
         c_with_sn: account,
         shop_id: shop_id,
-        user_id: sessionStorage.getItem("user_id") };
+        user_id: user_id };
 
-      console.log(url, params);
-      this.Http.Post(url, params, token).
+      //console.log(account);
+      //console.log(shop_id);
+      this.Http.Post(url, params).
       then(function (data) {
-        console.log(data.data);
+        //console.log(data.data)
         _this2.datacouponinfo = data.data;
       });
 
+
     },
-    DiscountDetailsBtn: function DiscountDetailsBtn(index, c_id, shop_id) {var _this3 = this;
+    statebtn: function statebtn(index) {var _this3 = this;
+      var shops_id = uni.getStorageSync('shops_id');
+      console.log(shops_id);
+
+      if (index == 1) {
+        var url = '/api/user/get_shop_info',
+        params = {
+          id: shops_id };
+
+        //console.log(url, params)
+        this.Http.Post(url, params).
+        then(function (data) {
+          console.log(data);
+          _this3.datainfo = data.data;
+          _this3.account = _this3.datainfo.u_account;
+        });
+        this.state = false;
+        this.states = true;
+      } else if (index == 2) {
+        this.state = true;
+        this.states = false;
+      }
+    },
+    DiscountDetailsBtn: function DiscountDetailsBtn(index, c_id, shop_id) {var _this4 = this;
       if (index == 1) {//点击领取优惠券
-        var token = uni.getStorageSync('token');
+        // token = uni.getStorageSync('token');
+        var user_id = uni.getStorageSync("user_id");
+        //console.log(user_id);
         var url = '/api/coupon/receive_coupon',
+
         params = {
           c_id: c_id,
           shop_id: shop_id,
-          user_id: sessionStorage.getItem("user_id") };
+          user_id: user_id };
 
-        console.log(url, params);
-        this.Http.Post(url, params, token).
+        //console.log(url, params)
+        this.Http.Post(url, params).
         then(function (data) {
-
+          //console.log(data);
           if (data.code == 200) {
-            _this3.endtime = data.data;
-            _this3.ISDiscount = true;
+            _this4.endtime = data.data;
+            _this4.ISDiscount = true;
           } else {
-            _this3.UNIEvolution.uniShowToast(data.msg);
+            _this4.UNIEvolution.uniShowToast(data.msg);
 
           }
 

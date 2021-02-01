@@ -13,7 +13,8 @@
 			<view class="Margin040">
 				<view class="DiscountDetails_5_3_1 displayFlex_center">
 					<!-- 确定 -->
-					<view class="displayFlex_center Size26" @tap="DiscountDetailsBtn(1)">{{ i18n.popup.Confirm }}</view>
+					<!-- <view class="Size24 d2 displayFlex_center" v-if="state" @tap="statebtn(1)">{{i18n.my.Follow}}</view> -->
+					<view class="displayFlex_center d2 Size26" @click="DiscountDetailsBtn()">{{ i18n.popup.Confirm }}</view>
 				</view>
 			</view>
 		</view>
@@ -59,12 +60,10 @@
 		    }
 		},
 		methods: {
-			DiscountDetailsBtn(index){
-				if(index == 1){
-					uni.redirectTo({
-					    url: './index'
-					})
-				}
+			DiscountDetailsBtn(){
+				uni.reLaunch({
+					url: './index'
+				});
 			},
 			
 			cancel: function() {
@@ -104,6 +103,13 @@
 				background: #CBCBCB;
 				border-radius: 41upx;
 				color: #FFFFFF;
+			}
+			.d2{
+				/* width: 	130upx;
+				height: 45upx; */
+				background: #f7dd4c !important;
+				color: #FFFFFF;
+				border-radius: 22upx;
 			}
 		}
 		

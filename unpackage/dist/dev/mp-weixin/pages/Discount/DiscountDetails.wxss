@@ -78,6 +78,13 @@
   color: #FFFFFF;
   margin-right: 30rpx;
 }
+.DiscountDetails_2 .DiscountDetails_2_1 .DiscountDetails_2_1_2 .d2.data-v-bc3bc228 {
+  width: 130rpx;
+  height: 45rpx;
+  background: #f7dd4c !important;
+  color: #FFFFFF;
+  border-radius: 22rpx;
+}
 .DiscountDetails_2 .DiscountDetails_2_2.data-v-bc3bc228 {
   min-height: 63rpx;
   color: #4f4f4f;

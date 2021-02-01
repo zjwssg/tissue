@@ -226,15 +226,15 @@ var SCAN_MAPS = (_SCAN_MAPS = {}, _defineProperty(_SCAN_MAPS,
 
 {
   data: {
-    evalName: "hs-scancode", //扫码回调监听事件
-    flash: false, //手电筒
-    vibrate: true, //震动
-    sound: "none", //声音 none default
-    fil: [0, 1, 2], //条码类型
-    msg: "扫码", //提示文本
-    height: 600, //高度
-    isDark: null, //状态栏前景色 黑色
-    fullScreen: false //是否全屏
+    // evalName: "hs-scancode", //扫码回调监听事件
+    // flash: false, //手电筒
+    // vibrate: true, //震动
+    // sound: "none", //声音 none default
+    // fil: [0, 1, 2], //条码类型
+    // msg: "扫码", //提示文本
+    // height: 600, //高度
+    // isDark: null, //状态栏前景色 黑色
+    // fullScreen: false, //是否全屏
   },
   computed: {
     scan_img: function scan_img() {
@@ -248,6 +248,13 @@ var SCAN_MAPS = (_SCAN_MAPS = {}, _defineProperty(_SCAN_MAPS,
     // }
   },
   onLoad: function onLoad(p) {var _this = this;
+    /* const user_id = uni.getStorageSync('user_id');
+                                                console.log(user_id);
+                                                if(user_id == "" || user_id == 'undefined'){
+                                                	uni.navigateTo({
+                                                	    url: '../logon/logon'
+                                                	});
+                                                }; */
     //参数
     if (p.evalName) this.evalName = p.evalName;
     if (p.flash) this.flash = p.flash == 'true';
@@ -297,13 +304,63 @@ var SCAN_MAPS = (_SCAN_MAPS = {}, _defineProperty(_SCAN_MAPS,
       });
     },
     success: function success(e) {
+      var date = new Date().getTime();
+
+      //if(e.detail.message != "")this->asd();
       uni.$emit(this.evalName, [null, {
+
         "hsScanCode": true,
         "result": e.detail.message,
         "scanType": SCAN_MAPS[e.detail.code],
         "charSet": "utf8",
         "path": e.detail.file || "",
         "errMsg": "scanCode:ok" }]);
+
+
+      //console.log(e.detail.message),
+      var obj = {
+        "cmd": 1000,
+        "data": { digital: 1, msg: "run" },
+        "sn": e.detail.message,
+        "nonceStr": date };
+
+
+      //console.log(JSON.stringify(obj));
+      uni.request({
+        url: "http://47.98.243.156:8090/api/equipment/directive_issue",
+        data: {
+          "data": JSON.stringify(obj) },
+
+        method: 'POST',
+        dataType: 'json',
+        success: function success(res) {
+          console.log(res);
+          if (res.data.errorCode == 0) {
+            var objs = {
+              "cmdId": res.data.data,
+              "nonceStr": 16516 };
+
+            //console.log(JSON.stringify(objs))
+            uni.request({
+              url: "http://47.98.243.156:8090/api/equipment/directive_result",
+              data: {
+                "data": JSON.stringify(objs) },
+
+              method: 'GET',
+              dataType: 'json',
+              success: function success(msg) {
+                console.log(msg);
+                if (msg.data.errorCode == 0) {
+                  uni.redirectTo({
+                    url: '../index/Successful' });
+
+
+                }
+              } });
+
+          }
+        } });
+
 
     },
     error: function error(e, cancel) {
@@ -312,6 +369,16 @@ var SCAN_MAPS = (_SCAN_MAPS = {}, _defineProperty(_SCAN_MAPS,
         "errMsg": cancel === true ? "scanCode:fail cancel" : "scanCode:fail" },
       null]);
       if (!cancel) this.toStart();
+    },
+    asd: function asd() {
+      var obj = {
+        "cmd": 1000,
+        "data": { digital: 1, msg: "run" },
+        "sn": "ookkma",
+        "nonceStr": "135" };
+
+      this.$emit('obj', obj);
+
     },
     toStart: function toStart() {
       this.$refs.barcode && this.$refs.barcode.start({

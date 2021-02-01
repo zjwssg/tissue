@@ -53,6 +53,13 @@
   border-radius: 41rpx;
   color: #FFFFFF;
 }
+.DiscountDetails_5_3 .DiscountDetails_5_3_1 .d2.data-v-6f4e1de0 {
+  /* width: 	130upx;
+			height: 45upx; */
+  background: #f7dd4c !important;
+  color: #FFFFFF;
+  border-radius: 22rpx;
+}
 .Successful_2_0.data-v-6f4e1de0 {
   width: 100%;
   height: 100vh;

@@ -169,11 +169,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
     return {
-      ISadvertisement: false };
+      ISadvertisement: true };
 
   },
   onLoad: function onLoad() {
@@ -190,7 +191,16 @@ var _default =
       return this.$t('message');
     } },
 
-  methods: {} };exports.default = _default;
+  methods: {
+    DiscountDetailsBtn: function DiscountDetailsBtn() {
+      uni.reLaunch({
+        url: './index' });
+
+    },
+
+    cancel: function cancel() {
+      this.ISadvertisement = false;
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
