@@ -6500,32 +6500,6 @@ var render = function() {
                   )
                 ],
                 1
-              ),
-              _c(
-                "div",
-                { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: _vm._$g(8, "sc"),
-                      attrs: { _i: 8 },
-                      on: {
-                        click: function($event) {
-                          return _vm.$handleViewEvent($event)
-                        }
-                      }
-                    },
-                    [
-                      _c("v-uni-image", {
-                        staticClass: _vm._$g(9, "sc"),
-                        attrs: { src: _vm._$g(9, "a-src"), mode: "", _i: 9 }
-                      })
-                    ],
-                    1
-                  )
-                ],
-                1
               )
             ],
             1

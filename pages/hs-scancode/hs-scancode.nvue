@@ -157,44 +157,74 @@
 					"sn": e.detail.message, 
 					"nonceStr": date
 				};
-				
-				//console.log(JSON.stringify(obj));
+				const user_id = uni.getStorageSync('user_id');
 				uni.request({
-					url:"http://47.98.243.156:8090/api/equipment/directive_issue",
+					url:"http://47.98.243.156:8090/api/user/tissue_restrict",
 					data:{
-						"data" :JSON.stringify(obj)
+						user_id:user_id,
 					},
 					method: 'POST',
 					dataType:'json',
 					success(res) {
-						console.log(res)
-						if(res.data.errorCode == 0){
-							let objs = {
-								"cmdId":res.data.data,
-								"nonceStr":16516,
-							}
-							//console.log(JSON.stringify(objs))
+						if(res.code == 200){
+							//console.log(JSON.stringify(obj));
 							uni.request({
-								url:"http://47.98.243.156:8090/api/equipment/directive_result",
+								url:"http://47.98.243.156:8090/api/equipment/directive_issue",
 								data:{
-									"data":JSON.stringify(objs)
-								},					
-								method: 'GET',
+									"data" :JSON.stringify(obj)
+								},
+								method: 'POST',
 								dataType:'json',
-								success(msg) {		
-									console.log(msg);
-									if(msg.data.errorCode == 0){
-										uni.redirectTo({
-										    url: '../index/Successful'
+								success(res) {
+									console.log(res)
+									if(res.data.errorCode == 0){
+										let objs = {
+											"cmdId":res.data.data,
+											"nonceStr":16516,
+										}
+										//console.log(JSON.stringify(objs))
+										uni.request({
+											url:"http://47.98.243.156:8090/api/equipment/directive_result",
+											data:{
+												"data":JSON.stringify(objs)
+											},					
+											method: 'GET',
+											dataType:'json',
+											success(msg) {		
+												console.log(msg);
+												if(msg.data.errorCode == 0){
+													uni.request({
+														url:"http://47.98.243.156:8090/api/user/get_states",
+														data:{
+															user_id:user_id,
+															sn:e.detail.message,
+														},					
+														method: 'POST',
+														dataType:'json',
+														success(data) {
+															console.log(data);
+														}
+													});
+													uni.redirectTo({
+													    url: '../index/Successful'
+													});
+													
+												}
+											},	
 										});
-										
 									}
-								},	
+								},
+								
+							});
+						}else if(res.code == 200){
+							uni.showToast({
+								title: '今日已领取',
+								duration: 2000
 							});
 						}
-					},
-					
+					}
 				});
+				
 			},
 			error(e, cancel) {
 				uni.$emit(this.evalName, [{

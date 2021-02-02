@@ -14,7 +14,7 @@
 								<view class="PersonalSettings_1_1_1_1_2 displayFlex_right">
 									
 									<view class="displayFlex_center borderRadius">
-										<image class="img100 borderRadius" v-model="XGuserIcon" :src="`http://47.98.243.156:8090/static/img/${user.user_icon}`" mode=""></image>
+										<image class="img100 borderRadius" v-model="XGuserIcon" :src="`http://47.98.243.156:8090/static/img/head/${user.user_icon}`" mode=""></image>
 									</view>
 									
 									

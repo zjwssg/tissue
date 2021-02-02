@@ -7,7 +7,7 @@
 				<div class="Discount_1_1_2">
 					<div class="Discount_1_1_2_1"><image class="img100 Discount_1_1_2_1_1" :src="`http://47.98.243.156:8090/static/logo.png`" mode=""></image></div>
 				</div>
-				<div class="Discount_1_1_1"><div class="Discount_1_1_1_1" @tap="headPortraitBtn()"><image class="img100 borderRadius" :src="`http://47.98.243.156:8090/static/img/${user.user_icon}`" mode=""></image></div></div>
+				<!-- <div class="Discount_1_1_1"><div class="Discount_1_1_1_1" @tap="headPortraitBtn()"><image class="img100 borderRadius" :src="`http://47.98.243.156:8090/static/img/head/${user.user_icon}`" mode=""></image></div></div> -->
 			</div>
 		</div>
 	</div>
@@ -37,7 +37,7 @@
 					success:(msg) => {		
 						console.log(msg.data.data);
 						this.user = msg.data.data[0];
-						// console.log(user)
+						console.log(user)
 					},
 					
 				})

@@ -1,0 +1,76 @@
+<template>
+	<div>
+		<HXR-GoogleMobileADBannerAd style="width:750rpx;height:50px;background-color: #555555;" adUnitID="ca-app-pub-3940256099942544/2934735716" @adLoaded="myload()" @adFail="myfail()"></HXR-GoogleMobileADBannerAd>
+		<button type="default" @click="showInterstitialAd()">插屏广告</button>
+		<button type="default" @click="showRewardedAd()">激励广告</button>
+		<button type="default" @click="testAsyncFunc()">testAsyncFunc</button>
+	</div>
+</template>
+
+<script>
+	var googleInterstitialAd = uni.requireNativePlugin('HXR-GoogleMobileADInterstitialAd');
+	var googleRewardedAd = uni.requireNativePlugin('HXR-GoogleMobileADRewardedAd');
+	// var testModule = uni.requireNativePlugin("Test")
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		onLoad() {
+			googleInterstitialAd.createADWithAdUnitID('ca-app-pub-3940256099942544/4411468910', (res) => {
+				console.log(JSON.stringify(res));
+				uni.showToast({
+					title:res.msg
+				})
+			});
+	
+			googleRewardedAd.createADWithAdUnitID('ca-app-pub-3940256099942544/1712485313', function(res){
+				console.log(JSON.stringify(res));
+			});
+			
+		},
+		methods: {
+			testAsyncFunc() {
+				// 调用异步方法
+				googleInterstitialAd.testAsyncFunc({
+						'name': 'unimp',
+						'age': 1
+					},
+					(ret) => {
+						modal.toast({
+							message: ret,
+							duration: 1.5
+						});
+					})
+			},
+			myload:function(e){
+				uni.showToast({
+					title:'加载完成'
+				})
+			},
+			myfail:function(e){
+				uni.showToast({
+					title:'加载失败'
+				})
+			},
+			showInterstitialAd:function(){
+				googleInterstitialAd.showWithCallback(function(res){
+					console.log(JSON.stringify(res));
+					uni.showToast({
+						title:res.msg
+					})
+				});
+			},
+			showRewardedAd:function(){
+				googleRewardedAd.showWithCallback(function(res){
+					console.log(JSON.stringify(res));
+				});
+			}
+		}
+	} 
+</script>
+
+<style>
+
+</style>

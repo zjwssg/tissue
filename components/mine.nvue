@@ -7,7 +7,7 @@
 				<view class="diandi60"></view>
 				
 				<view class="mine_1_1_1" @tap="mineClick(1)">
-					<view class="mine_1_1_1_1"><view class=""><image class="img100 borderRadius" :src="`http://47.98.243.156:8090/static/logo.png`" mode=""></image></view></view>
+					<view class="mine_1_1_1_1"><view class=""><image class="img100 borderRadius" :src="`http://47.98.243.156:8090/static/img/head/${user.user_icon}`" mode=""></image></view></view>
 					<view class="mine_1_1_1_2">
 						<view class="diandi40"></view>
 						<view class="mine_1_1_1_2_1 Size32 fontWeight600">{{ user.user_nickname }}</view>
@@ -64,21 +64,23 @@
 		},
 		methods: {
 			getinfo(){
-							// console.log(11111111);
-									const token = uni.getStorageSync('token');
-							let url = '/api/client/get_info',
-								params = {
-									user_id:sessionStorage.getItem("user_id"),
-									
-								};
-							console.log(url, params)
-							this.Http.Post(url, params,token)
-								.then(data => {
-									console.log('mine'+data.data)
-									this.user=data.data
-								})
-					 
-							},
+				const user_id = uni.getStorageSync('user_id');
+				uni.request({
+					url:"http://47.98.243.156:8090/api/client/getuserlist",
+					data:{
+						'user_id':user_id,
+					},					
+					method: 'POST',
+					dataType:'json',
+					header: {'content-Type': 'application/x-www-form-urlencoded'},
+					success:(msg) => {		
+						console.log(msg.data.data);
+						this.user = msg.data.data[0];
+						console.log(user)
+					},
+					
+				})
+			},
 			mineClick(index){
 				this.$emit('mineClick',index);
 			}

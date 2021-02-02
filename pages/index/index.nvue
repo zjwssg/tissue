@@ -11,7 +11,7 @@
 						<image class="img100 Discount_1_1_2_1_img" @tap="dianji()" :src="`http://47.98.243.156:8090/static/logo.png`" mode=""></image>
 					</div>
 				</div>
-				<div class="Discount_1_1_1 displayFlex_center"><div class="Discount_1_1_1_1" @tap="headPortraitBtn(['slide-left'])"><image class="img100 borderRadius Discount_1_1_1_1_1" :src="`http://47.98.243.156:8090/static/img/${user.user_icon}`" mode=""></image></div></div>
+				<div class="Discount_1_1_1 displayFlex_center"><div class="Discount_1_1_1_1" @tap="headPortraitBtn(['slide-left'])"><image class="img100 borderRadius Discount_1_1_1_1_1" :src="`http://47.98.243.156:8090/static/img/head/${user.user_icon}`" mode=""></image></div></div>
 			</div>
 		</div> 
 
@@ -100,9 +100,9 @@
 		</div>
 		</uni-transition>
 		
-		<!-- <view class="Detailss_3 displayFlex_right">
+		<view class="Detailss_3 displayFlex_right">
 				<view class="Detailss_3_1 displayFlex_right" @tap="HomingClick()"><image style=" width: 92upx;height: 92upx;" src="../../static/dingwei.png" mode=""></image></view>
-		</view> -->
+		</view>
 		
 		
 		
@@ -125,7 +125,7 @@
 				<view class="mine_1_1_1" @tap="mineClick(1)"> 
 					<view class="mine_1_1_1_1">
 						<view class="mine_1_1_1_1_1">
-							<image class="mine_1_1_1_1_1_1_10" :src="`http://47.98.243.156:8090/static/img/${user.user_icon}`" mode=""></image>
+							<image class="mine_1_1_1_1_1_1_10" :src="`http://47.98.243.156:8090/static/img/head/${user.user_icon}`" mode=""></image>
 						</view>
 					</view> 
 					<view class="mine_1_1_1_2" >
@@ -205,7 +205,7 @@
 		data() {
 			return {
 				
-				select:"简体中文",
+				select:1,
 				show: false,
 				transShow: false,
 				modeClass: ['fade'],
@@ -297,13 +297,12 @@
 		          this.mapHeight = res.windowHeight *2 - 110;
 				  //console.log( this.mapHeight);
 				  this.mineHeight = res.screenHeight *2;
-		        } 
+		        }
 		    });
 		},
 		onReady() {  //必须使用onReady传入markers
 			//var _this = this;
 			// this.$refs.mycomponent.focus({"markers":_this.markers})
-			
 		},
 		onShow() {
 			//此处测试传值 瞎写的   传值的结构应该是：
@@ -648,6 +647,8 @@
 		position: fixed;
 		bottom:98upx;
 	}
+	
+	
 	.Discount_1 {
 		
 		width:750upx;
@@ -861,26 +862,29 @@
 	
 	// 我的
 	
-	
-	.mine_1{
-		width:600upx;
-		height:1500upx;
+	.diandi60{
+		width:650upx;
 		background-color: #f7dd4c;
+	}
+	.mine_1{
+		width:650upx;
+		height:1500upx;
+		background-color: #ffffff;
 		position: fixed;
 		left: 0;
 		top: 0;
 		z-index:9999999;
 	}
 	.mine_1_1{
-		width:600upx;
+		width:650upx;
 		/* height: 264upx; */
 		/* background-color: #4CD964; */
 		
 	}
 	.mine_1_1_1{
-		width:550upx;
-		height: 204upx;
-		// background-color: #FBEB94;
+		width:650upx;
+		height: 220upx;
+		background-color: #F7DD4C;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
