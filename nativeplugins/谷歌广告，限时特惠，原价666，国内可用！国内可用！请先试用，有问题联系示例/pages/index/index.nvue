@@ -18,14 +18,14 @@
 			}
 		},
 		onLoad() {
-			googleInterstitialAd.createADWithAdUnitID('ca-app-pub-3940256099942544/4411468910', (res) => {
+			googleInterstitialAd.createADWithAdUnitID('ca-app-pub-1106504807696198/7005349719', (res) => {
 				console.log(JSON.stringify(res));
 				uni.showToast({
 					title:res.msg
 				})
 			});
 	
-			googleRewardedAd.createADWithAdUnitID('ca-app-pub-3940256099942544/1712485313', function(res){
+			googleRewardedAd.createADWithAdUnitID('ca-app-pub-1106504807696198/7005349719', function(res){
 				console.log(JSON.stringify(res));
 			});
 			

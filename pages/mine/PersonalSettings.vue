@@ -226,6 +226,8 @@
 												uni.redirectTo({
 												    url: './PersonalSettings'
 												});
+											}else if(data.code == 203){
+												this.UNIEvolution.uniShowToast("不允许的图片格式");
 											}else{
 												this.UNIEvolution.uniShowToast(data.msg);
 											}

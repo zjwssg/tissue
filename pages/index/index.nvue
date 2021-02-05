@@ -990,8 +990,8 @@
 	.mine_2_1{
 		width:490upx;
 		height: 76upx;
-		background-color: #ffffff;
-		border: 2upx solid #545454;
+		background-color: #dcdcdc;
+		//border: 2upx solid #545454;
 		border-radius: 38upx;
 		color: #000000;
 		text-align: center;

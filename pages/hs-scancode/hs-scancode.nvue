@@ -81,13 +81,6 @@
 			// }
 		},
 		onLoad(p) {
-			/* const user_id = uni.getStorageSync('user_id');
-			console.log(user_id);
-			if(user_id == "" || user_id == 'undefined'){
-				uni.navigateTo({
-				    url: '../logon/logon'
-				});
-			}; */
 			//参数
 			if (p.evalName) this.evalName = p.evalName;
 			if (p.flash) this.flash = p.flash == 'true';
@@ -137,8 +130,11 @@
 				});
 			},
 			success(e) {
+				uni.showLoading({
+				    title: '加载中'
+				});
 				var date = new Date().getTime();
-				
+				//this.UNIEvolution.uniShowLoading();
 				//if(e.detail.message != "")this->asd();
 				uni.$emit(this.evalName, [null, {
 					
@@ -158,16 +154,23 @@
 					"nonceStr": date
 				};
 				const user_id = uni.getStorageSync('user_id');
+				uni.showToast({
+					title: '登陆成功',
+					duration: 2000
+				});	
 				uni.request({
 					url:"http://47.98.243.156:8090/api/user/tissue_restrict",
 					data:{
 						user_id:user_id,
+						sn:e.detail.message,
 					},
 					method: 'POST',
 					dataType:'json',
-					success(res) {
-						if(res.code == 200){
-							//console.log(JSON.stringify(obj));
+					success(eq) {
+						console.log(eq);
+						console.log(eq.data.code);
+						if(eq.data.code == 200){
+							
 							uni.request({
 								url:"http://47.98.243.156:8090/api/equipment/directive_issue",
 								data:{
@@ -193,6 +196,7 @@
 											success(msg) {		
 												console.log(msg);
 												if(msg.data.errorCode == 0){
+													console.log(e.detail.message);
 													uni.request({
 														url:"http://47.98.243.156:8090/api/user/get_states",
 														data:{
@@ -201,27 +205,37 @@
 														},					
 														method: 'POST',
 														dataType:'json',
-														success(data) {
-															console.log(data);
+														success(state) {
+															console.log(state);
+															if(state.data.code == 200){
+																uni.redirectTo({
+																    url: '../index/Successful'
+																});
+															}
 														}
-													});
-													uni.redirectTo({
-													    url: '../index/Successful'
-													});
-													
+													});	
 												}
 											},	
 										});
+									}else{
+										console.log('cuowu');
 									}
-								},
-								
+								},	
 							});
-						}else if(res.code == 200){
+						}else if(eq.data.code == 202){
+							uni.navigateBack({});
 							uni.showToast({
 								title: '今日已领取',
-								duration: 2000
+								duration: 3000
 							});
-						}
+						}else if(eq.data.code == 303){
+							
+							uni.navigateBack({});
+							uni.showToast({
+								title: '纸巾机已空',
+								duration: 3000
+							});
+						}	
 					}
 				});
 				

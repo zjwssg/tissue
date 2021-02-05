@@ -48,8 +48,10 @@ https://app.mockplus.cn/s/HDEzOSxB5  UI   彬彬
 			// setTimeout(function() {
 			// 	plus.webview.close(w);
 			// }, 4000);
+			
 		},
 		onShow: function() {
+			
 			console.log('App Show')
 		},
 		onHide: function() {

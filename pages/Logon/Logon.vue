@@ -107,7 +107,7 @@
 			}
 		},
 		onLoad() {
-	
+			
 		},
 		computed: {
 		    i18n() {
@@ -125,9 +125,9 @@
 				}else if(index ==3){ //fak
 					
 				}else if(index ==4){ //微信
-					uni.switchTab({
+					/* uni.switchTab({
 						url:"../index/index" 
-					})
+					}) */
 					//注释跳转首页
 					// uni.navigateTo({
 					// 	url:"./phoneNumber"
@@ -143,8 +143,16 @@
 					};
 					this.UNIEvolution.uniShowLoading()
 					const code = uni.getStorageSync('code');
+					
+					//获取短信后6位
+					var disName = code;
+					var disLength = disName.length;
+					var shortName = disName.substring(disLength-6,disLength);
+					console.log(shortName);//打印结果：这条街最亮的崽
+					
+
 					console.log(code);
-					if(this.inputVerificationCode !== code){
+					if(this.inputVerificationCode !== shortName){
 						uni.showToast({
 							title: '验证码不正确',
 							image:'../../static/xx.png',
@@ -165,16 +173,17 @@
 						//header:"Content-type: application/x-www-form-urlencoded",
 						success(data) {
 							console.log(data);
-							console.log(data.data.data[0]['user_id']);
+							console.log(data.data.data);
 						if(data.data.code == 200){
 								//this.UNIEvolution.uniShowToast("验证码获取成功");
 							    //this.UNIEvolution.uniShowToast(msg.data);
+								uni.setStorageSync('user_id', data.data.data[0]['user_id']);
 								uni.showToast({
 									title: '登陆成功',
 									duration: 2000
 								});		
 								
-								uni.setStorageSync('user_id', data.data.data[0]['user_id']);
+								
 								uni.switchTab({
 									url:"../index/index" 
 								})
@@ -205,13 +214,13 @@
 						url:"http://47.98.243.156:8090/api/client/getverificationcode",
 						data:{
 							user_phone:this.inputUserName,
-							type:0,
+							type:1,
 						},
 						header: {'content-Type': 'application/x-www-form-urlencoded'},
 						method: 'POST',
 						//header:"Content-type: application/x-www-form-urlencoded",
 						success(msg) {		
-							console.log(msg.data.data);
+							console.log(msg);
 							if(msg.data.code == 200){
 								//this.UNIEvolution.uniShowToast("验证码获取成功");
 							    //this.UNIEvolution.uniShowToast(msg.data);
